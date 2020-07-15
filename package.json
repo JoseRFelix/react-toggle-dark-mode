@@ -32,6 +32,7 @@
     "trailingComma": "es5"
   },
   "name": "react-toggle-dark-mode",
+  "description": "Animated dark mode toggle as seen in blogs!",
   "author": "Jose R. Felix (https://jfelix.info)",
   "module": "dist/react-dark-mode-switch.esm.js",
   "repository": {

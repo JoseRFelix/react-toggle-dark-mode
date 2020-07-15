@@ -15,7 +15,7 @@
   <img alt="Bundle size" src="https://badgen.net/bundlephobia/minzip/react" /> 
 </p>
 
-> 🌃 Animated dark mode toggle as seen in awesome blogs!
+> 🌃 Animated dark mode toggle as seen in blogs!
 
 ![Interactive sun and moon transition](./docs/demo.gif)
 
