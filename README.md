@@ -12,7 +12,7 @@
   <a href="http://makeapullrequest.com" target="_blank">
     <img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" />
   </a>
-  <img alt="Bundle size" src="https://badgen.net/bundlephobia/minzip/react" /> 
+  <img alt="Bundle size" src="https://badgen.net/bundlephobia/minzip/react-toggle-dark-mode" /> 
 </p>
 
 > 🌃 Animated dark mode toggle as seen in blogs!
