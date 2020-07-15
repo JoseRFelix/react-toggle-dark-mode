@@ -2,16 +2,13 @@
   <h1>React Dark Mode Switch</h1>
 </div>
 <p>
-  <a href="https://www.npmjs.com/package/react-css-theme-switcher" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/react-css-theme-switcher.svg">
+  <a href="https://www.npmjs.com/package/react-dark-mode-switch" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/react-dark-mode-switch.svg">
   </a>
   <img src="https://img.shields.io/badge/node-%3E%3D10-blue.svg" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-  <a href="https://codecov.io/gh/Jfelix61/react-css-theme-switcher" target="_blank">
-    <img alt="codecov" src="https://codecov.io/gh/Jfelix61/react-css-theme-switcher/branch/master/graph/badge.svg" />
-  </a>
+  </a> 
   <a href="http://makeapullrequest.com" target="_blank">
     <img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" />
   </a>
