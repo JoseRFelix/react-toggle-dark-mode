@@ -1,167 +1,143 @@
-# TSDX React User Guide
+<div align="center">
+  <h1>React Dark Mode Switch</h1>
+</div>
+<p>
+  <a href="https://www.npmjs.com/package/react-css-theme-switcher" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/react-css-theme-switcher.svg">
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D10-blue.svg" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://codecov.io/gh/Jfelix61/react-css-theme-switcher" target="_blank">
+    <img alt="codecov" src="https://codecov.io/gh/Jfelix61/react-css-theme-switcher/branch/master/graph/badge.svg" />
+  </a>
+  <a href="http://makeapullrequest.com" target="_blank">
+    <img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" />
+  </a>
+  <img alt="Bundle size" src="https://badgen.net/bundlephobia/minzip/react" /> 
+</p>
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+> 🌃 Animated dark mode toggle as seen in awesome blogs!
 
-> This TSDX setup is meant for developing React components (not apps!) that can be published to NPM. If you’re looking to build an app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+![Interactive sun and moon transition](./docs/demo.gif)
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+## Prerequisites
 
-## Commands
+- node >=10
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
-
-The recommended workflow is to run TSDX in one terminal:
-
-```bash
-npm start # or yarn start
-```
-
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
-
-Then run the example inside another:
-
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
-```
-
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, [we use Parcel's aliasing](https://github.com/palmerhq/tsdx/pull/88/files).
-
-To do a one-off build, use `npm run build` or `yarn build`.
-
-To run tests, use `npm test` or `yarn test`.
-
-## Configuration
-
-Code quality is [set up for you](https://github.com/palmerhq/tsdx/pull/45/files) with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`. This runs the test watcher (Jest) in an interactive mode. By default, runs tests related to files changed since the last commit.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
+## Installation
 
 ```shell
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
+npm i react-dark-mode-switch
 ```
 
-#### React Testing Library
+or with Yarn:
 
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup v1.x](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### Travis
-
-_to be completed_
-
-### Circle
-
-_to be completed_
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
+```shell
+yarn add react-dark-mode-switch
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+## Usage
 
-## Module Formats
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { DarkModeSwitch } from 'react-dark-mode-switch';
 
-CJS, ESModules, and UMD module formats are supported.
+const App = () => {
+  const [isDarkMode, setDarkMode] = React.useState(false);
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+  const toggleDarkMode = (checked: boolean) => {
+    setDarkMode(checked);
+  };
 
-## Using the Playground
-
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+  return (
+    <DarkModeSwitch
+      style={{ marginBottom: '2rem' }}
+      checked={isDarkMode}
+      onChange={toggleDarkMode}
+      size={120}
+    />
+  );
+};
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**!
+## API
 
-## Deploying the Playground
+### DarkModeSwitch
 
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
+#### Props
 
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
+| Name                | Type                         | Default Value                   | Description                               |
+| ------------------- | ---------------------------- | ------------------------------- | ----------------------------------------- |
+| onChange            | \(checked: boolean\) => void |                                 | Event that triggers when icon is clicked. |
+| checked             | boolean                      | false                           | Current icon state.                       |
+| style               | Object                       |                                 | CSS properties object.                    |
+| size                | number                       | 24                              | SVG size.                                 |
+| animationProperties | Object                       | defaultProperties \(see below\) | Override default animation properties.    |
+| moonColor           | string                       | white                           | Color of the moon.                        |
+| sunColor            | string                       | black                           | Color of the sun.                         |
+
+### Default Animation Properties
+
+```javascript
+const defaultProperties = {
+  dark: {
+    circle: {
+      r: 9,
+    },
+    mask: {
+      cx: '50%',
+      cy: '23%',
+    },
+    svg: {
+      transform: 'rotate(40deg)',
+    },
+    lines: {
+      opacity: 0,
+    },
+  },
+  light: {
+    circle: {
+      r: 5,
+    },
+    mask: {
+      cx: '100%',
+      cy: 0,
+    },
+    svg: {
+      transform: 'rotate(90deg)',
+    },
+    lines: {
+      opacity: 1,
+    },
+  },
+  springConfig: { mass: 4, tension: 250, friction: 35 },
+};
 ```
 
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
+## Contributors
 
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
-```
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-## Named Exports
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://jfelix.info"><img src="https://avatars1.githubusercontent.com/u/21092519?s=460&u=55be9996a2652c79880c62ad50d06e17639456e8&v=4" width="100px;" alt=""/><br /><sub><b>Jose Felix</b></sub></a><br /><a href="https://github.com/Jfelix61/react-theme-switcher/commits?author=Jfelix61" title="Code">💻</a> <a href="https://github.com/Jfelix61/react-theme-switcher/commits?author=Jfelix61" title="Documentation">📖</a> <a href="https://github.com/Jfelix61/react-theme-switcher/commits?author=Jfelix61" title="Tests">⚠️</a></td>    
+  </tr>  
+</table>
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 
-## Including Styles
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+This project follows the [all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+## Show your support
 
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+Give a ⭐️ if this project helped you!
