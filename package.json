@@ -31,9 +31,17 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "react-dark-mode-switch",
-  "author": "Jose Felix",
+  "name": "react-toggle-dark-mode",
+  "author": "Jose R. Felix (https://jfelix.info)",
   "module": "dist/react-dark-mode-switch.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoseRFelix/react-toggle-dark-mode"
+  },
+  "bugs": {
+    "url": "https://github.com/JoseRFelix/react-toggle-dark-mode/issues"
+  },
+  "homepage": "https://github.com/JoseRFelix/react-toggle-dark-mode#readme",
   "devDependencies": {
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",

@@ -1,9 +1,9 @@
 <div align="center">
-  <h1>React Dark Mode Switch</h1>
+  <h1>React Toggle Dark Mode</h1>
 </div>
 <p>
-  <a href="https://www.npmjs.com/package/react-dark-mode-switch" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/react-dark-mode-switch.svg">
+  <a href="https://www.npmjs.com/package/react-toggle-dark-mode" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/react-toggle-dark-mode.svg">
   </a>
   <img src="https://img.shields.io/badge/node-%3E%3D10-blue.svg" />
   <a href="#" target="_blank">
@@ -26,13 +26,13 @@
 ## Installation
 
 ```shell
-npm i react-dark-mode-switch
+npm i react-toggle-dark-mode
 ```
 
 or with Yarn:
 
 ```shell
-yarn add react-dark-mode-switch
+yarn add react-toggle-dark-mode
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ yarn add react-dark-mode-switch
 ```jsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DarkModeSwitch } from 'react-dark-mode-switch';
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const App = () => {
   const [isDarkMode, setDarkMode] = React.useState(false);
