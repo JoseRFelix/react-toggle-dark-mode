@@ -35,7 +35,8 @@ export const defaultProperties = {
   springConfig: { mass: 4, tension: 250, friction: 35 },
 };
 
-interface Props {
+type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
+interface Props extends SVGProps {
   onChange: (checked: boolean) => void;
   checked: boolean;
   style?: React.CSSProperties;
