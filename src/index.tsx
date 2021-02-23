@@ -40,7 +40,7 @@ interface Props extends SVGProps {
   onChange: (checked: boolean) => void;
   checked: boolean;
   style?: React.CSSProperties;
-  size?: number;
+  size?: number|string;
   animationProperties?: typeof defaultProperties;
   moonColor?: string;
   sunColor?: string;
