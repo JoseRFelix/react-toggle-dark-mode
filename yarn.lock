@@ -2034,6 +2034,11 @@ core-js@^2.4.0, core-js@^2.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
+core-js@^3.0.0:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.9.1.tgz#cec8de593db8eb2a85ffb0dbdeb312cb6e5460ae"
+  integrity sha512-gSjRvzkxQc1zjM/5paAmL4idJBFzuJoo+jDjF1tStYFMV2ERfD02HhahhCGXUyHxQRG4yFKVSdO6g62eoRMcDg==
+
 core-util-is@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -4755,6 +4760,11 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
+react-children-utilities@^1.2.1:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-1.3.3.tgz#4d6725b51471c119e5319a309d07c51543b65cb2"
+  integrity sha512-4VnHQweSerPlsKS65dBeKuAPDhHAOllDgsjDLLdluMOZ+1yOE29pFqdGAnnOnFVfhIhvYnGyRbiJ7NtMemsu7w==
+
 react-dom@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
@@ -4787,6 +4797,14 @@ react-spring@^9.0.0-rc.3:
     "@react-spring/three" "9.0.0-rc.3"
     "@react-spring/web" "9.0.0-rc.3"
     "@react-spring/zdog" "9.0.0-rc.3"
+
+react-svg-unique-id@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/react-svg-unique-id/-/react-svg-unique-id-1.3.3.tgz#277a0f8d752bd3cbf8565bc7ee7c487bf4586eff"
+  integrity sha512-Cbm4jz1svWHUm9eGN4nALt3vzA9nZXw//oDYOYQIK5qgUPze3wru7od6I5Omhq6lRtUlOYPE5Rhx5659sLWcrw==
+  dependencies:
+    core-js "^3.0.0"
+    react-children-utilities "^1.2.1"
 
 react@^16.13.1:
   version "16.13.1"
