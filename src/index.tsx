@@ -23,7 +23,7 @@ export const defaultProperties = {
     },
     mask: {
       cx: '100%',
-      cy: 0,
+      cy: '0%',
     },
     svg: {
       transform: 'rotate(90deg)',
@@ -34,6 +34,8 @@ export const defaultProperties = {
   },
   springConfig: { mass: 4, tension: 250, friction: 35 },
 };
+
+let REACT_TOGGLE_DARK_MODE_GLOBAL_ID = 0;
 
 type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
 interface Props extends SVGProps {
@@ -57,6 +59,13 @@ export const DarkModeSwitch: React.FC<Props> = ({
   style,
   ...rest
 }) => {
+  const [id, setId] = React.useState(0);
+
+  React.useEffect(() => {
+    REACT_TOGGLE_DARK_MODE_GLOBAL_ID += 1;
+    setId(REACT_TOGGLE_DARK_MODE_GLOBAL_ID);
+  }, [setId]);
+
   const properties = React.useMemo(() => {
     if (animationProperties !== defaultProperties) {
       return Object.assign(defaultProperties, animationProperties);
@@ -84,9 +93,9 @@ export const DarkModeSwitch: React.FC<Props> = ({
     config: animationProperties.springConfig,
   });
 
-  const toggle = () => {
-    onChange(!checked);
-  };
+  const toggle = () => onChange(!checked);
+
+  const uniqueMaskId = `circle-mask-${id}`;
 
   return (
     <animated.svg
@@ -108,7 +117,7 @@ export const DarkModeSwitch: React.FC<Props> = ({
       }}
       {...rest}
     >
-      <mask id="myMask2">
+      <mask id={uniqueMaskId}>
         <rect x="0" y="0" width="100%" height="100%" fill="white" />
         <animated.circle
           // @ts-ignore
@@ -124,7 +133,7 @@ export const DarkModeSwitch: React.FC<Props> = ({
         fill={checked ? moonColor : sunColor}
         // @ts-ignore
         style={centerCircleProps}
-        mask="url(#myMask2)"
+        mask={`url(#${uniqueMaskId})`}
       />
       <animated.g stroke="currentColor" style={linesProps}>
         <line x1="12" y1="1" x2="12" y2="3" />
