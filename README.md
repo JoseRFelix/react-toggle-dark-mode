@@ -101,7 +101,7 @@ const defaultProperties = {
     },
     mask: {
       cx: '100%',
-      cy: 0,
+      cy: '0%',
     },
     svg: {
       transform: 'rotate(90deg)',
@@ -123,7 +123,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://jfelix.info"><img src="https://avatars1.githubusercontent.com/u/21092519?s=460&u=55be9996a2652c79880c62ad50d06e17639456e8&v=4" width="100px;" alt=""/><br /><sub><b>Jose Felix</b></sub></a><br /><a href="https://github.com/Jfelix61/react-theme-switcher/commits?author=Jfelix61" title="Code">💻</a> <a href="https://github.com/Jfelix61/react-theme-switcher/commits?author=Jfelix61" title="Documentation">📖</a> <a href="https://github.com/Jfelix61/react-theme-switcher/commits?author=Jfelix61" title="Tests">⚠️</a></td>    
+    <td align="center"><a href="https://jfelix.info"><img src="https://avatars1.githubusercontent.com/u/21092519?s=460&u=55be9996a2652c79880c62ad50d06e17639456e8&v=4" width="100px;" alt=""/><br /><sub><b>Jose Felix</b></sub></a><br /><a href="https://github.com/JoseRFelix/react-toggle-dark-mode/commits?author=JoseRFelix" title="Code">💻</a> <a href="https://github.com/JoseRFelix/react-toggle-dark-mode/commits?author=JoseRFelix" title="Documentation">📖</a> <a href="https://github.com/JoseRFelix/react-toggle-dark-mode/commits?author=JoseRFelix" title="Tests">⚠️</a></td>    
   </tr>  
 </table>
 
