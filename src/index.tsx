@@ -38,7 +38,7 @@ export const defaultProperties = {
 let REACT_TOGGLE_DARK_MODE_GLOBAL_ID = 0;
 
 type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
-interface Props extends SVGProps {
+export interface Props extends SVGProps {
   onChange: (checked: boolean) => void;
   checked: boolean;
   style?: React.CSSProperties;
