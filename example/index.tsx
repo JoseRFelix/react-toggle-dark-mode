@@ -3,20 +3,25 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client'; 
 import { DarkModeSwitch, ThemeMode } from '../.';
 
-const arrayN = (size: number) => {
-  return new Array(size).fill(undefined);
-}
+export const customColors = {
+  halfSunLeftFill: '#3790f0',
+  halfSunLeftStroke: '#185ba3',
+  halfSunRightFill: '#c957fa',
+  halfSunRightStroke: '#661887',
+  halfSunLeftBeamStroke: '#3bb81f',
+  halfSunRightBeamStroke: '#f58caf',
+  sunFill: '#ffbc33',
+  sunStroke: '#784713',
+  sunBeamStroke: '#5c190c',
+  moonFill: '#ffdb9e',
+  moonStroke: '#f0cd51',
+};
 
 const App = () => {
   const [themeMode, setThemeMode] = React.useState(ThemeMode.System);
-  const [exampleAmount, setExampleAmount] = React.useState(0);
 
   const cycleThemeMode = (themeMode: ThemeMode) => {
     setThemeMode(themeMode);
-  };
-
-  const addExample = () => {
-    setExampleAmount(prevValue => prevValue + 1);
   };
 
   return (
@@ -24,42 +29,90 @@ const App = () => {
       style={{
         minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: '2em',
+        gap: '5em',
         background: themeMode === ThemeMode.Dark ? '#1b242c' : 'white',
         transition: '0.2s background',
       }}
     >
-      <DarkModeSwitch
-        style={{ marginBottom: '2rem' }}
-        themeMode={themeMode}
-        onChange={cycleThemeMode}
-        size={120}
-      />
-      <DarkModeSwitch
-        style={{ marginBottom: '2rem' }}
-        themeMode={themeMode}
-        onChange={cycleThemeMode}
-        size={80}
-      />
-      <DarkModeSwitch
-        style={{ marginBottom: '2rem' }}
-        themeMode={themeMode}
-        onChange={cycleThemeMode}
-        moonColor="red"
-        size={30}
-      />
-      {arrayN(exampleAmount).map(() => (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '2em',
+        }}
+      >
+        <h1>Default</h1>
         <DarkModeSwitch
           style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
-          size={Math.floor(Math.random() * 60) + 1}
+          size={200}
         />
-      ))}
-      <button onClick={addExample}>Add example</button>
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          size={120}
+        />
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          size={80}
+        />
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          moonColor="red"
+          size={30}
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '2em',
+        }}
+      >
+        <h1>Customised</h1>
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          size={200}
+        />
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          size={120}
+        />
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          size={80}
+        />
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          moonColor="red"
+          size={30}
+        />
+      </div>
     </div>
   );
 };

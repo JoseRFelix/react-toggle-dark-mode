@@ -39,12 +39,25 @@ export interface AnimationProperties {
   springConfig: SpringConfig;
 }
 
+export interface ColorOptions {
+  halfSunLeftFill: string;
+  halfSunLeftStroke: string;
+  halfSunRightFill: string;
+  halfSunRightStroke: string;
+  halfSunLeftBeamStroke: string;
+  halfSunRightBeamStroke: string;
+  sunFill: string;
+  sunStroke: string;
+  sunBeamStroke: string;
+  moonFill: string;
+  moonStroke: string;
+}
+
 export interface Props extends SVGProps {
   onChange: (themeMode: ThemeMode) => void;
   themeMode: ThemeMode;
   style?: React.CSSProperties;
   size?: number | string;
+  colors?: ColorOptions;
   animationProperties?: AnimationProperties;
-  moonColor?: string;
-  sunColor?: string;
 }

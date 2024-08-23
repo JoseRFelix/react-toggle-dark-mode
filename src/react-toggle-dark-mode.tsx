@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSpring } from 'react-spring';
-import { Props, AnimationProperties, ThemeMode } from './types';
+import { Props, AnimationProperties, ColorOptions, ThemeMode } from './types';
 import { sunSvg } from './utils';
 
 export const defaultProperties: AnimationProperties = {
@@ -49,20 +49,34 @@ export const defaultProperties: AnimationProperties = {
       opacity: 0,
     },
   },
-  springConfig: { mass: 4, tension: 250, friction: 35, clamp: true},
-} as AnimationProperties;
+  springConfig: { mass: 4, tension: 250, friction: 35, clamp: true },
+};
 
-export const DarkModeSwitch: React.FC<Props> = ({
+export const defaultColors: ColorOptions = {
+  halfSunLeftFill: '#444444',
+  halfSunLeftStroke: '#444444',
+  halfSunRightFill: '#f8de26',
+  halfSunRightStroke: '#f8de26',
+  halfSunLeftBeamStroke: '#444444',
+  halfSunRightBeamStroke: '#f8de26',
+  sunFill: '#f8de26',
+  sunStroke: '#444444',
+  sunBeamStroke: '#444444',
+  moonFill: '#f5f5f5',
+  moonStroke: '#bbbbbb',
+};
+
+export const DarkModeSwitch = ({
   onChange,
-  // children,
   themeMode = ThemeMode.System,
   size = 24,
+  colors = defaultColors,
   animationProperties = defaultProperties,
   // moonColor = 'white',
   // sunColor = 'black',
   // style,
   // ...rest
-}) => {
+}: Props) => {
   const properties = React.useMemo(() => {
     if (animationProperties !== defaultProperties) {
       return Object.assign(defaultProperties, animationProperties);
@@ -107,17 +121,7 @@ export const DarkModeSwitch: React.FC<Props> = ({
     height: size,
     onClick: cycle,
     themeMode,
-    halfSunLeftFill: '#444444',
-    halfSunLeftStroke: '#444444',
-    halfSunRightFill: '#f8de26',
-    halfSunRightStroke: '#f8de26',
-    halfSunLeftBeamStroke: '#444444',
-    halfSunRightBeamStroke: '#f8de26',
-    sunFill: '#f8de26',
-    sunStroke: '#444444',
-    sunBeamStroke: '#444444',
-    moonFill: '#f5f5f5',
-    moonStroke: '#bbbbbb',
+    ...colors,
     springSvgContainerProps: svgContainerProps,
     springCenterCircleProps: centerCircleProps,
     springLinesProps: linesProps,
