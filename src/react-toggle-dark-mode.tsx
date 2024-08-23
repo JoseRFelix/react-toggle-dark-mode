@@ -72,9 +72,7 @@ export const DarkModeSwitch = ({
   size = 24,
   colors = defaultColors,
   animationProperties = defaultProperties,
-  // moonColor = 'white',
-  // sunColor = 'black',
-  // style,
+  style,
   // ...rest
 }: Props) => {
   const properties = React.useMemo(() => {
@@ -119,6 +117,7 @@ export const DarkModeSwitch = ({
   return sunAndMoonAnimatedSvg({
     width: size,
     height: size,
+    style,
     onClick: cycle,
     themeMode,
     ...colors,
@@ -127,87 +126,4 @@ export const DarkModeSwitch = ({
     springLinesProps: linesProps,
     springMaskedCircleProps: maskedCircleProps,
   });
-
-  // return (
-  //   <animated.svg
-  //     xmlns="http://www.w3.org/2000/svg"
-  //     width={size}
-  //     height={size}
-  //     viewBox="0 0 24 24"
-  //     color={themeMode === ThemeMode.Light ? sunColor : moonColor}
-  //     fill="none"
-  //     strokeWidth="2"
-  //     strokeLinecap="round"
-  //     strokeLinejoin="round"
-  //     stroke="currentColor"
-  //     onClick={cycle}
-  //     style={{
-  //       cursor: 'pointer',
-  //       ...svgContainerProps,
-  //       ...style,
-  //     }}
-  //     {...rest}
-  //   >
-  //     <mask id={uniqueMaskId}>
-  //       {themeMode !== ThemeMode.System && (
-  //         <rect x="0" y="0" width="100%" height="100%" fill="white" />
-  //       )}
-  //       {themeMode === ThemeMode.System && (
-  //         <rect x="0" y="0" width="50%" height="100%" fill="white" />
-  //       )}
-  //       {themeMode !== ThemeMode.System && (
-  //         <animated.circle
-  //           // @ts-ignore
-  //           style={maskedCircleProps}
-  //           r="9"
-  //           fill="black"
-  //         />
-  //       )}
-  //     </mask>
-
-  //     <mask id="mo-test-1">
-  //       <rect x="0" y="0" width="50%" height="100%" fill="white" />
-  //     </mask>
-
-  //     <mask id="mo-test-2">
-  //       <rect
-  //         x="0"
-  //         y="0"
-  //         width="50%"
-  //         height="100%"
-  //         fill="white"
-  //         transform="scale(-1, 1) translate(-100%, 0)"
-  //       />
-  //     </mask>
-
-  //     <animated.circle
-  //       cx="12"
-  //       cy="12"
-  //       fill="blue"
-  //       // @ts-ignore
-  //       style={centerCircleProps}
-  //       mask={`url(#mo-test-1)`}
-  //     />
-
-  //     <animated.circle
-  //       cx="12"
-  //       cy="12"
-  //       fill="red"
-  //       // @ts-ignore
-  //       style={centerCircleProps}
-  //       mask={`url(#mo-test-2)`}
-  //     />
-
-  //     <animated.g stroke="currentColor" style={linesProps}>
-  //       <line x1="12" y1="1" x2="12" y2="3" />
-  //       <line x1="12" y1="21" x2="12" y2="23" />
-  //       <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-  //       <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-  //       <line x1="1" y1="12" x2="3" y2="12" />
-  //       <line x1="21" y1="12" x2="23" y2="12" />
-  //       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-  //       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-  //     </animated.g>
-  //   </animated.svg>
-  // );
 };

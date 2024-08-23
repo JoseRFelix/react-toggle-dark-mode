@@ -19,6 +19,7 @@ const generateUniqueId = (prefix: string) => {
 export const sunAndMoonAnimatedSvg = ({
   width,
   height,
+  style,
   onClick,
   halfSunLeftFill,
   halfSunLeftStroke,
@@ -97,6 +98,7 @@ export const sunAndMoonAnimatedSvg = ({
       style={{
         cursor: 'pointer',
         ...springSvgContainerProps,
+        ...style,
       }}
     >
       <defs>

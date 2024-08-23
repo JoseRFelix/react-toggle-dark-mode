@@ -3,6 +3,7 @@ import { ThemeMode } from 'types';
 export interface SunSvgProps {
   width: number | string;
   height: number | string;
+  style?: React.CSSProperties;
   onClick: () => void;
   themeMode: ThemeMode;
   halfSunLeftFill: string;
