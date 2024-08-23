@@ -7,10 +7,26 @@ describe('DarkModeSwitch', () => {
     cleanup();
   });
 
-  it('renders and unmounts without crashing', () => {
-    const { unmount } = render(
-      <DarkModeSwitch onChange={() => {}} themeMode={ThemeMode.System} />
-    );
-    unmount();
+  describe('renders and unmounts without crashing', () => {
+    it('system theme', () => {
+      const { unmount } = render(
+        <DarkModeSwitch onChange={() => {}} themeMode={ThemeMode.System} />
+      );
+      unmount();
+    });
+
+    it('light theme', () => {
+      const { unmount } = render(
+        <DarkModeSwitch onChange={() => {}} themeMode={ThemeMode.Light} />
+      );
+      unmount();
+    });
+
+    it('dark theme', () => {
+      const { unmount } = render(
+        <DarkModeSwitch onChange={() => {}} themeMode={ThemeMode.Dark} />
+      );
+      unmount();
+    });
   });
 });
