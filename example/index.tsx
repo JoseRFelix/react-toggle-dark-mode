@@ -46,7 +46,7 @@ const App = () => {
           gap: '2em',
         }}
       >
-        <h1>Default</h1>
+        <h1 style={{color: themeMode === ThemeMode.Dark ? 'white' : '#1b242c'}}>Default</h1>
         <DarkModeSwitch
           style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
@@ -82,7 +82,7 @@ const App = () => {
           gap: '2em',
         }}
       >
-        <h1>Customised</h1>
+        <h1 style={{color: themeMode === ThemeMode.Dark ? 'white' : '#1b242c'}}>Customised</h1>
         <DarkModeSwitch
           style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
