@@ -5,21 +5,24 @@ import { SunAndMoonAnimatedSvg } from './SunAndMoonAnimatedSvg';
 
 export const defaultProperties: AnimationProperties = {
   [ThemeMode.System]: {
+    svg: {
+      transform: 'rotate(0deg)',
+    },
     circle: {
       r: 5,
     },
     mask: {
       cx: '100%',
       cy: '0%',
-    },
-    svg: {
-      transform: 'rotate(0deg)',
     },
     lines: {
       opacity: 1,
     },
   },
   [ThemeMode.Light]: {
+    svg: {
+      transform: 'rotate(0deg)',
+    },
     circle: {
       r: 5,
     },
@@ -27,23 +30,20 @@ export const defaultProperties: AnimationProperties = {
       cx: '100%',
       cy: '0%',
     },
-    svg: {
-      transform: 'rotate(0deg)',
-    },
     lines: {
       opacity: 1,
     },
   },
   [ThemeMode.Dark]: {
+    svg: {
+      transform: 'rotate(40deg)',
+    },
     circle: {
       r: 9,
     },
     mask: {
       cx: '50%',
       cy: '23%',
-    },
-    svg: {
-      transform: 'rotate(40deg)',
     },
     lines: {
       opacity: 0,
@@ -85,15 +85,15 @@ export const DarkModeSwitch = ({
 
   const { svg, circle, lines, mask } = properties[themeMode];
 
-  const svgContainerProps = useSpring({
+  const svgProps = useSpring({
     ...svg,
     config: animationProperties.springConfig,
   });
-  const centerCircleProps = useSpring({
+  const circleProps = useSpring({
     ...circle,
     config: animationProperties.springConfig,
   });
-  const maskedCircleProps = useSpring({
+  const maskProps = useSpring({
     ...mask,
     config: animationProperties.springConfig,
   });
@@ -122,10 +122,10 @@ export const DarkModeSwitch = ({
       onClick={cycle}
       themeMode={themeMode}
       {...colors}
-      springSvgContainerProps={svgContainerProps}
-      springCenterCircleProps={centerCircleProps}
-      springLinesProps={linesProps}
-      springMaskedCircleProps={maskedCircleProps}
+      svgProps={svgProps}
+      circleProps={circleProps}
+      maskProps={maskProps}
+      linesProps={linesProps}
     />
   );
 };

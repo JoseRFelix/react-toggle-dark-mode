@@ -23,10 +23,10 @@ export const SunAndMoonAnimatedSvg = ({
     sunBeamStroke,
     moonFill,
     moonStroke,
-    springSvgContainerProps,
-    springCenterCircleProps,
-    springLinesProps,
-    springMaskedCircleProps,
+    svgProps,
+    circleProps,
+    maskProps,
+    linesProps,
     themeMode,
   }: SunAndMoonAnimatedSvgProps) => {
     // Avoid id collisions in our SVG
@@ -88,7 +88,7 @@ export const SunAndMoonAnimatedSvg = ({
         onClick={onClick}
         style={{
           cursor: 'pointer',
-          ...springSvgContainerProps,
+          ...svgProps,
           ...style,
         }}
       >
@@ -110,7 +110,7 @@ export const SunAndMoonAnimatedSvg = ({
               <rect x="0" y="0" width="100%" height="100%" fill="white" />
               <animated.circle
                 // @ts-ignore
-                style={springMaskedCircleProps}
+                style={maskProps}
                 r="9"
                 fill="black"
               />
@@ -132,7 +132,7 @@ export const SunAndMoonAnimatedSvg = ({
           fill={leftSemiCircleFill}
           stroke={leftSemiCircleStroke}
           // @ts-ignore
-          style={springCenterCircleProps}
+          style={circleProps}
           mask={`url(#${leftSemiCircleMaskId})`}
         />
         {/* Right semi-circle */}
@@ -143,27 +143,27 @@ export const SunAndMoonAnimatedSvg = ({
           fill={rightSemiCircleFill}
           stroke={rightSemiCircleStroke}
           // @ts-ignore
-          style={springCenterCircleProps}
+          style={circleProps}
           mask={`url(#${rightSemiCircleMaskId})`}
         />
   
         {/* Beam Both sides */}
         <animated.g
           clipPath={`url(#${beamClipPathLeftId})`}
-          style={springLinesProps}
+          style={linesProps}
         >
           <line x1="12" y1="1" x2="12" y2="3" stroke={leftBeamStroke} />
           <line x1="12" y1="21" x2="12" y2="23" stroke={leftBeamStroke} />
         </animated.g>
         <animated.g
           clipPath={`url(#${beamClipPartRightId})`}
-          style={springLinesProps}
+          style={linesProps}
         >
           <line x1="12" y1="1" x2="12" y2="3" stroke={rightBeamStroke} />
           <line x1="12" y1="21" x2="12" y2="23" stroke={rightBeamStroke} />
         </animated.g>
   
-        <animated.g style={springLinesProps}>
+        <animated.g style={linesProps}>
           {/* Beam Left side */}
           <line
             x1="4.22"

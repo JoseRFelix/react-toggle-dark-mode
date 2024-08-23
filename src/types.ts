@@ -1,4 +1,4 @@
-import { SpringConfig } from 'react-spring';
+import { SpringConfig, SpringValue } from 'react-spring';
 
 export enum ThemeMode {
   System = 'System',
@@ -8,6 +8,15 @@ export enum ThemeMode {
 
 type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
 
+// Utility to promote existing type to use SpringValues
+type WithSpringValues<T> = {
+  [K in keyof T]: T[K] extends infer U ? (U extends string ? SpringValue<U> : U extends number ? SpringValue<U> : U) : never;
+};
+
+type SVGProperties = {
+  transform: string;
+};
+
 type CircleProperties = {
   r: number;
 };
@@ -15,10 +24,6 @@ type CircleProperties = {
 type MaskProperties = {
   cx: string;
   cy: string;
-};
-
-type SVGProperties = {
-  transform: string;
 };
 
 type LinesProperties = {
@@ -79,8 +84,8 @@ export interface SunAndMoonAnimatedSvgProps {
   sunBeamStroke: string;
   moonFill: string;
   moonStroke: string;
-  springSvgContainerProps: any; // TODO
-  springCenterCircleProps: any; // TODO
-  springLinesProps: any; // TODO
-  springMaskedCircleProps: any; // TODO
+  svgProps: WithSpringValues<SVGProperties>;
+  circleProps: WithSpringValues<CircleProperties>;
+  maskProps: WithSpringValues<MaskProperties>;
+  linesProps: WithSpringValues<LinesProperties>;
 };
