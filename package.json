@@ -44,16 +44,22 @@
   },
   "homepage": "https://github.com/JoseRFelix/react-toggle-dark-mode#readme",
   "devDependencies": {
-    "@types/react": "^16.9.43",
-    "@types/react-dom": "^16.9.8",
-    "husky": "^4.2.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "tsdx": "^0.13.2",
-    "tslib": "^2.0.0",
-    "typescript": "^3.9.6"
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "husky": "^9.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "regenerator-runtime": "^0.14.1",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.4"
   },
   "dependencies": {
-    "react-spring": "^9.0.0-rc.3"
+    "react-spring": "^9.7.4"
   }
 }

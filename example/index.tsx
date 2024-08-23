@@ -1,6 +1,6 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'; 
 import { DarkModeSwitch, ThemeMode } from '../.';
 
 const arrayN = (size: number) => {
@@ -64,4 +64,5 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
+root.render(<App />);
