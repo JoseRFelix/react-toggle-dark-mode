@@ -21,7 +21,7 @@ export const defaultProperties: AnimationProperties = {
   },
   [ThemeMode.Light]: {
     svg: {
-      transform: 'rotate(0deg)',
+      transform: 'rotate(90deg)',
     },
     circle: {
       r: 5,
@@ -57,8 +57,8 @@ export const defaultColors: ColorOptions = {
   halfSunLeftStroke: '#444444',
   halfSunRightFill: '#f8de26',
   halfSunRightStroke: '#f8de26',
-  halfSunLeftBeamStroke: '#444444',
-  halfSunRightBeamStroke: '#f8de26',
+  halfSunLeftBeamStroke: '#f8de26',
+  halfSunRightBeamStroke: '#444444',
   sunFill: '#f8de26',
   sunStroke: '#444444',
   sunBeamStroke: '#444444',
@@ -103,10 +103,16 @@ export const DarkModeSwitch = ({
   });
 
   const getNextThemeMode = (current: ThemeMode): ThemeMode => {
-    const values = Object.values(ThemeMode) as ThemeMode[];
-    const currentIndex = values.indexOf(current);
-    const nextIndex = (currentIndex + 1) % values.length; // Wrap around
-    return values[nextIndex];
+    switch (current) {
+      case ThemeMode.System:
+        return ThemeMode.Dark;
+      case ThemeMode.Dark:
+        return ThemeMode.Light;
+      case ThemeMode.Light:
+        return ThemeMode.System;
+      default:
+        return current; // Fallback case
+    }
   };
 
   const cycle = () => {

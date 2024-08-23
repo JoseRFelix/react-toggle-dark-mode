@@ -68,6 +68,13 @@ export const SunAndMoonAnimatedSvg = ({
       case ThemeMode.Dark:
         leftSemiCircleFill = moonFill;
         leftSemiCircleStroke = moonStroke;
+
+        // TODO:
+        // Should be the previous value (either light or system)
+        rightSemiCircleFill = sunFill;
+        rightSemiCircleStroke = sunStroke;
+        leftBeamStroke = sunBeamStroke;
+        rightBeamStroke = sunBeamStroke;
         break;
   
       default:
@@ -108,22 +115,29 @@ export const SunAndMoonAnimatedSvg = ({
           {themeMode === ThemeMode.Dark && (
             <>
               <rect x="0" y="0" width="100%" height="100%" fill="white" />
-              <animated.circle
+            </>
+          )}
+            <animated.circle
                 // @ts-ignore
                 style={maskProps}
                 r="9"
                 fill="black"
               />
-            </>
-          )}
         </mask>
         <mask id={rightSemiCircleMaskId}>
           {/* The second mask covers the right half of the circle */}
           {themeMode !== ThemeMode.Dark && (
             <rect x="50%" y="0" width="50%" height="100%" fill="white" />
           )}
+            <animated.circle
+                // @ts-ignore
+                style={maskProps}
+                r="9"
+                fill="black"
+              />
         </mask>
-  
+
+
         {/* Left semi-circle */}
         <animated.circle
           cx="12"

@@ -33,7 +33,7 @@ const App = () => {
         justifyContent: 'center',
         alignItems: 'center',
         gap: '5em',
-        background: themeMode === ThemeMode.Dark ? '#1b242c' : 'white',
+        background: themeMode === ThemeMode.Dark ? '#1b242c' : '#eee',
         transition: '0.2s background',
       }}
     >
@@ -46,7 +46,7 @@ const App = () => {
           gap: '2em',
         }}
       >
-        <h1 style={{color: themeMode === ThemeMode.Dark ? 'white' : '#1b242c'}}>Default</h1>
+        <h1 style={{color: themeMode === ThemeMode.Dark ? '#eee' : '#1b242c'}}>Default</h1>
         <DarkModeSwitch
           style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
@@ -81,7 +81,7 @@ const App = () => {
           gap: '2em',
         }}
       >
-        <h1 style={{color: themeMode === ThemeMode.Dark ? 'white' : '#1b242c'}}>Customised</h1>
+        <h1 style={{color: themeMode === ThemeMode.Dark ? '#eee' : '#1b242c'}}>Customised</h1>
         <DarkModeSwitch
           style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
