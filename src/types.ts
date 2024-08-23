@@ -1,5 +1,11 @@
 import { SpringConfig } from 'react-spring';
 
+export enum ThemeMode {
+  System = "System",
+  Light = "Light",
+  Dark = "Dark",
+};
+
 type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
 
 type CircleProperties = {
@@ -27,17 +33,18 @@ type ModeProperties = {
 };
 
 export interface AnimationProperties {
-    dark: ModeProperties;
-    light: ModeProperties;
+    [ThemeMode.System]: ModeProperties;
+    [ThemeMode.Light]: ModeProperties;
+    [ThemeMode.Dark]: ModeProperties;
     springConfig: SpringConfig;
-}
+};
 
 export interface Props extends SVGProps {
-  onChange: (checked: boolean) => void;
-  checked: boolean;
+  onChange: (themeMode: ThemeMode) => void;
+  themeMode: ThemeMode;
   style?: React.CSSProperties;
   size?: number | string;
   animationProperties?: AnimationProperties;
   moonColor?: string;
   sunColor?: string;
-}
+};

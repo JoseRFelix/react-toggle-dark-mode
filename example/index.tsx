@@ -1,22 +1,22 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DarkModeSwitch } from '../.';
+import { DarkModeSwitch, ThemeMode } from '../.';
 
-function arrayN(size: number) {
+const arrayN = (size: number) => {
   return new Array(size).fill(undefined);
 }
 
 const App = () => {
-  const [isDarkMode, setDarkMode] = React.useState(false);
-  const [toggleAmount, setToggleAmount] = React.useState(0);
+  const [themeMode, setThemeMode] = React.useState(ThemeMode.System);
+  const [exampleAmount, setExampleAmount] = React.useState(0);
 
-  const toggleDarkMode = (checked: boolean) => {
-    setDarkMode(checked);
+  const cycleThemeMode = (themeMode: ThemeMode) => {
+    setThemeMode(themeMode);
   };
 
-  const addToggle = () => {
-    setToggleAmount(prevValue => prevValue + 1);
+  const addExample = () => {
+    setExampleAmount(prevValue => prevValue + 1);
   };
 
   return (
@@ -27,38 +27,38 @@ const App = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        background: isDarkMode ? '#1b242c' : 'white',
+        background: themeMode === ThemeMode.Dark ? '#1b242c' : 'white', // TODO: fix this
         transition: '0.2s background',
       }}
     >
       <DarkModeSwitch
         style={{ marginBottom: '2rem' }}
-        checked={isDarkMode}
-        onChange={toggleDarkMode}
+        themeMode={themeMode}
+        onChange={cycleThemeMode}
         size={120}
       />
       <DarkModeSwitch
         style={{ marginBottom: '2rem' }}
-        checked={isDarkMode}
-        onChange={toggleDarkMode}
+        themeMode={themeMode}
+        onChange={cycleThemeMode}
         size={80}
       />
       <DarkModeSwitch
         style={{ marginBottom: '2rem' }}
-        checked={isDarkMode}
-        onChange={toggleDarkMode}
+        themeMode={themeMode}
+        onChange={cycleThemeMode}
         moonColor="red"
         size={30}
       />
-      {arrayN(toggleAmount).map(() => (
+      {arrayN(exampleAmount).map(() => (
         <DarkModeSwitch
           style={{ marginBottom: '2rem' }}
-          checked={isDarkMode}
-          onChange={toggleDarkMode}
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
           size={Math.floor(Math.random() * 60) + 1}
         />
       ))}
-      <button onClick={addToggle}>Add toggle</button>
+      <button onClick={addExample}>Add example</button>
     </div>
   );
 };
