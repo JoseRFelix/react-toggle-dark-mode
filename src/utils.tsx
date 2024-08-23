@@ -77,7 +77,7 @@ export const sunSvg = ({
       rightSemiCircleStroke = halfSunRightStroke;
       leftBeamStroke = halfSunLeftBeamStroke;
       rightBeamStroke = halfSunRightBeamStroke;
-      
+
       break;
 
     default:
@@ -90,9 +90,9 @@ export const sunSvg = ({
       width={width}
       height={height}
       viewBox="0 0 24 24"
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       shapeRendering="geometricPrecision"
       imageRendering="optimizeQuality"
       onClick={onClick}
