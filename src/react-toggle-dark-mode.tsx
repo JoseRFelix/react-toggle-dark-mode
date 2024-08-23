@@ -49,7 +49,7 @@ export const defaultProperties: AnimationProperties = {
       opacity: 0,
     },
   },
-  springConfig: { mass: 4, tension: 250, friction: 35 },
+  springConfig: { mass: 4, tension: 250, friction: 35, clamp: true},
 } as AnimationProperties;
 
 export const DarkModeSwitch: React.FC<Props> = ({
