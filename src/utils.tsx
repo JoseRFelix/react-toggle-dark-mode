@@ -3,16 +3,20 @@ import { animated } from 'react-spring';
 import { SunSvgProps } from 'utils.types';
 import { ThemeMode } from './types';
 
-const generateUniqueId = (prefix: string) =>
-  `${prefix}-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
+/**
+ * Generate a unique id to avoid ID collisions.
+ */
+let generateUniqueIdCounter = 0;
+const generateUniqueId = (prefix: string) => {
+  generateUniqueIdCounter += 1;
+  return `${prefix}-${generateUniqueIdCounter}`;
+};
 
 /**
- * Created Sun SVG with sun beams which is actually composed of two semi-circles attached to each other.
- * @returns Animated Sun SVG
+ * Created a sun and moon animated SVG which animated between three different states (Half Sun, Sun and Moon).
+ * @returns Animated SVG
  */
-export const sunSvg = ({
+export const sunAndMoonAnimatedSvg = ({
   width,
   height,
   onClick,
@@ -27,18 +31,18 @@ export const sunSvg = ({
   sunBeamStroke,
   moonFill,
   moonStroke,
-
   springSvgContainerProps,
   springCenterCircleProps,
   springLinesProps,
   springMaskedCircleProps,
   themeMode,
 }: SunSvgProps) => {
+  // Avoid id collisions in our SVG
   const prefix = 'react-toggle-dark-mode';
-  const beamClipPathLeftId = generateUniqueId(`${prefix}-beam-clip-left`);
-  const beamClipPartRightId = generateUniqueId(`${prefix}-beam-clip-right`);
-  const maskLeftId = generateUniqueId(`${prefix}-semi-mask-left`);
-  const maskRightId = generateUniqueId(`${prefix}-semi-mask-right`);
+  const beamClipPathLeftId = generateUniqueId(`${prefix}-beam-clip-path-left`);
+  const beamClipPartRightId = generateUniqueId(`${prefix}-beam-clip-path-right`);
+  const leftSemiCircleMaskId = generateUniqueId(`${prefix}-left-semi-circle-mask`);
+  const rightSemiCircleMaskId = generateUniqueId(`${prefix}-right-semi-circle-mask`);
 
   // Colour corrections
   let leftSemiCircleFill;
@@ -72,12 +76,6 @@ export const sunSvg = ({
     case ThemeMode.Dark:
       leftSemiCircleFill = moonFill;
       leftSemiCircleStroke = moonStroke;
-
-      rightSemiCircleFill = halfSunRightFill;
-      rightSemiCircleStroke = halfSunRightStroke;
-      leftBeamStroke = halfSunLeftBeamStroke;
-      rightBeamStroke = halfSunRightBeamStroke;
-
       break;
 
     default:
@@ -110,7 +108,7 @@ export const sunSvg = ({
         </clipPath>
       </defs>
 
-      <mask id={maskLeftId}>
+      <mask id={leftSemiCircleMaskId}>
         {themeMode !== ThemeMode.Dark && (
           <rect x="0" y="0" width="51%" height="100%" fill="white" />
         )}
@@ -126,7 +124,7 @@ export const sunSvg = ({
           </>
         )}
       </mask>
-      <mask id={maskRightId}>
+      <mask id={rightSemiCircleMaskId}>
         {/* The second mask covers the right half of the circle */}
         {themeMode !== ThemeMode.Dark && (
           <rect x="50%" y="0" width="50%" height="100%" fill="white" />
@@ -142,7 +140,7 @@ export const sunSvg = ({
         stroke={leftSemiCircleStroke}
         // @ts-ignore
         style={springCenterCircleProps}
-        mask={`url(#${maskLeftId})`}
+        mask={`url(#${leftSemiCircleMaskId})`}
       />
       {/* Right semi-circle */}
       <animated.circle
@@ -153,7 +151,7 @@ export const sunSvg = ({
         stroke={rightSemiCircleStroke}
         // @ts-ignore
         style={springCenterCircleProps}
-        mask={`url(#${maskRightId})`}
+        mask={`url(#${rightSemiCircleMaskId})`}
       />
 
       {/* Beam Both sides */}

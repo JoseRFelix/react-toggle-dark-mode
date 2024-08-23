@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSpring } from 'react-spring';
 import { Props, AnimationProperties, ColorOptions, ThemeMode } from './types';
-import { sunSvg } from './utils';
+import { sunAndMoonAnimatedSvg } from './utils';
 
 export const defaultProperties: AnimationProperties = {
   [ThemeMode.System]: {
@@ -116,7 +116,7 @@ export const DarkModeSwitch = ({
     onChange(nextThemeMode);
   };
 
-  return sunSvg({
+  return sunAndMoonAnimatedSvg({
     width: size,
     height: size,
     onClick: cycle,
