@@ -1,43 +1,43 @@
 import { SpringConfig } from 'react-spring';
 
 export enum ThemeMode {
-  System = "System",
-  Light = "Light",
-  Dark = "Dark",
-};
+  System = 'System',
+  Light = 'Light',
+  Dark = 'Dark',
+}
 
 type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
 
 type CircleProperties = {
-    r: number;
+  r: number;
 };
 
 type MaskProperties = {
-    cx: string;
-    cy: string;
+  cx: string;
+  cy: string;
 };
 
 type SVGProperties = {
-    transform: string;
+  transform: string;
 };
 
 type LinesProperties = {
-    opacity: number;
+  opacity: number;
 };
 
 type ModeProperties = {
-    circle: CircleProperties;
-    mask: MaskProperties;
-    svg: SVGProperties;
-    lines: LinesProperties;
+  circle: CircleProperties;
+  mask: MaskProperties;
+  svg: SVGProperties;
+  lines: LinesProperties;
 };
 
 export interface AnimationProperties {
-    [ThemeMode.System]: ModeProperties;
-    [ThemeMode.Light]: ModeProperties;
-    [ThemeMode.Dark]: ModeProperties;
-    springConfig: SpringConfig;
-};
+  [ThemeMode.System]: ModeProperties;
+  [ThemeMode.Light]: ModeProperties;
+  [ThemeMode.Dark]: ModeProperties;
+  springConfig: SpringConfig;
+}
 
 export interface Props extends SVGProps {
   onChange: (themeMode: ThemeMode) => void;
@@ -47,4 +47,4 @@ export interface Props extends SVGProps {
   animationProperties?: AnimationProperties;
   moonColor?: string;
   sunColor?: string;
-};
+}

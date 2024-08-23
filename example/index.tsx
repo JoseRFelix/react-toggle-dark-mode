@@ -27,7 +27,8 @@ const App = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        background: themeMode === ThemeMode.Dark ? '#1b242c' : 'white', // TODO: fix this
+        gap: '2em',
+        background: themeMode === ThemeMode.Dark ? '#1b242c' : 'white',
         transition: '0.2s background',
       }}
     >
