@@ -69,7 +69,6 @@ const App = () => {
           style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
-          moonColor="red"
           size={30}
         />
       </div>
@@ -109,7 +108,6 @@ const App = () => {
           themeMode={themeMode}
           onChange={cycleThemeMode}
           colors={customColors}
-          moonColor="red"
           size={30}
         />
       </div>
