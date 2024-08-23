@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "yarn clean-parcel && parcel index.html",
+    "build": "yarn clean-parcel && parcel build index.html",
+    "clean": "yarn clean && rm -rf node_modules",
+    "clean-parcel": "rm -rf .parcel-cache"
   },
   "dependencies": {
     "react-app-polyfill": "^3.0.0"
