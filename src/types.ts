@@ -61,3 +61,26 @@ export interface Props extends SVGProps {
   colors?: ColorOptions;
   animationProperties?: AnimationProperties;
 }
+
+export interface SunAndMoonAnimatedSvgProps {
+  width: number | string;
+  height: number | string;
+  style?: React.CSSProperties;
+  onClick: () => void;
+  themeMode: ThemeMode;
+  halfSunLeftFill: string;
+  halfSunLeftStroke: string;
+  halfSunRightFill: string;
+  halfSunRightStroke: string;
+  halfSunLeftBeamStroke: string;
+  halfSunRightBeamStroke: string;
+  sunFill: string;
+  sunStroke: string;
+  sunBeamStroke: string;
+  moonFill: string;
+  moonStroke: string;
+  springSvgContainerProps: any; // TODO
+  springCenterCircleProps: any; // TODO
+  springLinesProps: any; // TODO
+  springMaskedCircleProps: any; // TODO
+};

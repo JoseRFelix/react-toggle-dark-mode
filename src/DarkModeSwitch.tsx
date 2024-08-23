@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSpring } from 'react-spring';
 import { Props, AnimationProperties, ColorOptions, ThemeMode } from './types';
-import { sunAndMoonAnimatedSvg } from './utils';
+import { SunAndMoonAnimatedSvg } from './SunAndMoonAnimatedSvg';
 
 export const defaultProperties: AnimationProperties = {
   [ThemeMode.System]: {
@@ -114,16 +114,18 @@ export const DarkModeSwitch = ({
     onChange(nextThemeMode);
   };
 
-  return sunAndMoonAnimatedSvg({
-    width: size,
-    height: size,
-    style,
-    onClick: cycle,
-    themeMode,
-    ...colors,
-    springSvgContainerProps: svgContainerProps,
-    springCenterCircleProps: centerCircleProps,
-    springLinesProps: linesProps,
-    springMaskedCircleProps: maskedCircleProps,
-  });
+  return (
+    <SunAndMoonAnimatedSvg
+      width={size}
+      height={size}
+      style={style}
+      onClick={cycle}
+      themeMode={themeMode}
+      {...colors}
+      springSvgContainerProps={svgContainerProps}
+      springCenterCircleProps={centerCircleProps}
+      springLinesProps={linesProps}
+      springMaskedCircleProps={maskedCircleProps}
+    />
+  );
 };
