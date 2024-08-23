@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useSpring, animated } from 'react-spring';
+import type { Props, AnimationProperties } from 'types';
 
-export const defaultProperties = {
+export const defaultProperties: AnimationProperties = {
   dark: {
     circle: {
       r: 9,
@@ -36,17 +37,6 @@ export const defaultProperties = {
 };
 
 let REACT_TOGGLE_DARK_MODE_GLOBAL_ID = 0;
-
-type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
-export interface Props extends SVGProps {
-  onChange: (checked: boolean) => void;
-  checked: boolean;
-  style?: React.CSSProperties;
-  size?: number | string;
-  animationProperties?: typeof defaultProperties;
-  moonColor?: string;
-  sunColor?: string;
-}
 
 export const DarkModeSwitch: React.FC<Props> = ({
   onChange,
