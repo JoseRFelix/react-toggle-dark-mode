@@ -15,10 +15,10 @@ export const SunAndMoonAnimatedSvg = ({
   isSystemThemeModeEnabled,
   halfSunLeftFill,
   halfSunLeftStroke,
-  halfSunRightFill,
-  halfSunRightStroke,
   halfSunLeftBeamStroke,
-  halfSunRightBeamStroke,
+  halfMoonRightFill,
+  halfMoonRightStroke,
+  halfMoonRightBeamStroke,
   sunFill,
   sunStroke,
   sunBeamStroke,
@@ -46,22 +46,20 @@ export const SunAndMoonAnimatedSvg = ({
   const systemColors = {
     leftSemiCircleFill: halfSunLeftFill,
     leftSemiCircleStroke: halfSunLeftStroke,
-
-    rightSemiCircleFill: halfSunRightFill,
-    rightSemiCircleStroke: halfSunRightStroke,
-
     leftBeamStroke: halfSunLeftBeamStroke,
-    rightBeamStroke: halfSunRightBeamStroke,
+
+    rightSemiCircleFill: halfMoonRightFill,
+    rightSemiCircleStroke: halfMoonRightStroke,
+    rightBeamStroke: halfMoonRightBeamStroke,
   };
 
   const lightColors = {
     leftSemiCircleFill: sunFill,
     leftSemiCircleStroke: sunStroke,
+    leftBeamStroke: sunBeamStroke,
 
     rightSemiCircleFill: sunFill,
     rightSemiCircleStroke: sunStroke,
-
-    leftBeamStroke: sunBeamStroke,
     rightBeamStroke: sunBeamStroke,
   };
 
@@ -70,16 +68,15 @@ export const SunAndMoonAnimatedSvg = ({
     leftSemiCircleStroke: moonStroke,
 
     // These are unused visually in dark mode but we set them to the theme we're transitionig from to maintain accurate animation colors
+    leftBeamStroke: isSystemThemeModeEnabled
+    ? systemColors.leftBeamStroke
+    : lightColors.leftBeamStroke,
     rightSemiCircleFill: isSystemThemeModeEnabled
       ? systemColors.rightSemiCircleFill
       : lightColors.rightSemiCircleFill,
     rightSemiCircleStroke: isSystemThemeModeEnabled
       ? systemColors.rightSemiCircleStroke
       : lightColors.rightSemiCircleStroke,
-
-    leftBeamStroke: isSystemThemeModeEnabled
-      ? systemColors.leftBeamStroke
-      : lightColors.leftBeamStroke,
     rightBeamStroke: isSystemThemeModeEnabled
       ? systemColors.rightBeamStroke
       : lightColors.rightBeamStroke,

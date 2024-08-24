@@ -53,10 +53,10 @@ export interface AnimationProperties {
 export interface ColorOptions {
   halfSunLeftFill: string;
   halfSunLeftStroke: string;
-  halfSunRightFill: string;
-  halfSunRightStroke: string;
   halfSunLeftBeamStroke: string;
-  halfSunRightBeamStroke: string;
+  halfMoonRightFill: string;
+  halfMoonRightStroke: string;
+  halfMoonRightBeamStroke: string;
   sunFill: string;
   sunStroke: string;
   sunBeamStroke: string;
@@ -82,10 +82,10 @@ export interface SunAndMoonAnimatedSvgProps {
   isSystemThemeModeEnabled: boolean;
   halfSunLeftFill: string;
   halfSunLeftStroke: string;
-  halfSunRightFill: string;
-  halfSunRightStroke: string;
   halfSunLeftBeamStroke: string;
-  halfSunRightBeamStroke: string;
+  halfMoonRightFill: string;
+  halfMoonRightStroke: string;
+  halfMoonRightBeamStroke: string;
   sunFill: string;
   sunStroke: string;
   sunBeamStroke: string;

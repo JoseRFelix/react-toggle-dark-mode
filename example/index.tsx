@@ -6,10 +6,10 @@ import { DarkModeSwitch, ThemeMode } from '../.';
 export const customColors = {
   halfSunLeftFill: '#3790f0',
   halfSunLeftStroke: '#185ba3',
-  halfSunRightFill: '#c957fa',
-  halfSunRightStroke: '#661887',
   halfSunLeftBeamStroke: '#3bb81f',
-  halfSunRightBeamStroke: '#f58caf',
+  halfMoonRightFill: '#c957fa',
+  halfMoonRightStroke: '#661887',
+  halfMoonRightBeamStroke: '#f58caf',
   sunFill: '#ffbc33',
   sunStroke: '#784713',
   sunBeamStroke: '#5c190c',
