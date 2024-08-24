@@ -73,7 +73,6 @@ export const DarkModeSwitch = ({
   colors = defaultColors,
   animationProperties = defaultProperties,
   style,
-  // ...rest
 }: Props) => {
   const properties = React.useMemo(() => {
     if (animationProperties !== defaultProperties) {
