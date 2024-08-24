@@ -68,8 +68,8 @@ export const defaultColors: ColorOptions = {
 
 export const DarkModeSwitch = ({
   onChange,
-  isSystemModeEnabled = true,
-  themeMode = isSystemModeEnabled ? ThemeMode.System : ThemeMode.Light,
+  isSystemThemeModeEnabled = true,
+  themeMode = isSystemThemeModeEnabled ? ThemeMode.System : ThemeMode.Light,
   size = 24,
   colors = defaultColors,
   animationProperties = defaultProperties,
@@ -109,7 +109,7 @@ export const DarkModeSwitch = ({
       case ThemeMode.Dark:
         return ThemeMode.Light;
       case ThemeMode.Light:
-        return isSystemModeEnabled ? ThemeMode.System : ThemeMode.Dark;
+        return isSystemThemeModeEnabled ? ThemeMode.System : ThemeMode.Dark;
       default:
         throw Error(`Unsupported theme mode: ${current}`);
     }
@@ -136,7 +136,7 @@ export const DarkModeSwitch = ({
         height={size}
         style={style}
         themeMode={themeMode}
-        isSystemModeEnabled={isSystemModeEnabled}
+        isSystemThemeModeEnabled={isSystemThemeModeEnabled}
         {...colors}
         svgProps={svgProps}
         circleProps={circleProps}

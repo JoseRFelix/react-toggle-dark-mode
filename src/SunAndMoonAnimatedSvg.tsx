@@ -12,7 +12,7 @@ export const SunAndMoonAnimatedSvg = ({
   height,
   style,
   themeMode,
-  isSystemModeEnabled,
+  isSystemThemeModeEnabled,
   halfSunLeftFill,
   halfSunLeftStroke,
   halfSunRightFill,
@@ -70,17 +70,17 @@ export const SunAndMoonAnimatedSvg = ({
     leftSemiCircleStroke: moonStroke,
 
     // These are unused visually in dark mode but we set them to the theme we're transitionig from to maintain accurate animation colors
-    rightSemiCircleFill: isSystemModeEnabled
+    rightSemiCircleFill: isSystemThemeModeEnabled
       ? systemColors.rightSemiCircleFill
       : lightColors.rightSemiCircleFill,
-    rightSemiCircleStroke: isSystemModeEnabled
+    rightSemiCircleStroke: isSystemThemeModeEnabled
       ? systemColors.rightSemiCircleStroke
       : lightColors.rightSemiCircleStroke,
 
-    leftBeamStroke: isSystemModeEnabled
+    leftBeamStroke: isSystemThemeModeEnabled
       ? systemColors.leftBeamStroke
       : lightColors.leftBeamStroke,
-    rightBeamStroke: isSystemModeEnabled
+    rightBeamStroke: isSystemThemeModeEnabled
       ? systemColors.rightBeamStroke
       : lightColors.rightBeamStroke,
   };

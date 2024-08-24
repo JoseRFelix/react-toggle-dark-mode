@@ -66,7 +66,7 @@ export interface ColorOptions {
 
 export interface Props extends SVGProps {
   onChange: (themeMode: ThemeMode) => void;
-  isSystemModeEnabled?: boolean;
+  isSystemThemeModeEnabled?: boolean;
   themeMode: ThemeMode;
   style?: React.CSSProperties;
   size?: number | string;
@@ -79,7 +79,7 @@ export interface SunAndMoonAnimatedSvgProps {
   height: number | string;
   style?: React.CSSProperties;
   themeMode: ThemeMode;
-  isSystemModeEnabled: boolean;
+  isSystemThemeModeEnabled: boolean;
   halfSunLeftFill: string;
   halfSunLeftStroke: string;
   halfSunRightFill: string;

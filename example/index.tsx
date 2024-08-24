@@ -19,17 +19,17 @@ export const customColors = {
 
 const App = () => {
   const [themeMode, setThemeMode] = React.useState(ThemeMode.System);
-  const [isSystemModeEnabled, setIsSystemModeEnabled] = React.useState(true);
+  const [isSystemThemeModeEnabled, setIsSystemThemeModeEnabled] = React.useState(true);
 
   const cycleThemeMode = (themeMode: ThemeMode) => {
     setThemeMode(themeMode);
   };
 
-  const toggleIsSystemModeEnabled = () => {
+  const toggleisSystemThemeModeEnabled = () => {
     if (themeMode === ThemeMode.System) {
       setThemeMode(ThemeMode.Light);
     }
-    setIsSystemModeEnabled(prevState => !prevState);
+    setIsSystemThemeModeEnabled(prevState => !prevState);
   };
 
   const sizesToDemo = [200, 120, 80, 30]
@@ -53,10 +53,10 @@ const App = () => {
       <div>
       <input
           type="checkbox"
-          checked={isSystemModeEnabled}
-          onChange={toggleIsSystemModeEnabled}
+          checked={isSystemThemeModeEnabled}
+          onChange={toggleisSystemThemeModeEnabled}
         />
-        <label><strong>isSystemModeEnabled</strong></label>
+        <label><strong>isSystemThemeModeEnabled</strong></label>
       </div>
         </div>
       <div
@@ -91,7 +91,7 @@ const App = () => {
               (<DarkModeSwitch
                 size={size}
                 onChange={cycleThemeMode}
-                isSystemModeEnabled={isSystemModeEnabled}
+                isSystemThemeModeEnabled={isSystemThemeModeEnabled}
                 themeMode={themeMode}
               />)
              )}
@@ -110,7 +110,7 @@ const App = () => {
               (<DarkModeSwitch
                 size={size}
                 onChange={cycleThemeMode}
-                isSystemModeEnabled={isSystemModeEnabled}
+                isSystemThemeModeEnabled={isSystemThemeModeEnabled}
                 themeMode={themeMode}
                 colors={customColors}
               />)
@@ -142,7 +142,7 @@ const App = () => {
               (<DarkModeSwitch
                 size={size}
                 onChange={cycleThemeMode}
-                isSystemModeEnabled={isSystemModeEnabled}
+                isSystemThemeModeEnabled={isSystemThemeModeEnabled}
                 themeMode={themeMode}
               />)
              )}
@@ -161,7 +161,7 @@ const App = () => {
               (<DarkModeSwitch
                 size={size}
                 onChange={cycleThemeMode}
-                isSystemModeEnabled={isSystemModeEnabled}
+                isSystemThemeModeEnabled={isSystemThemeModeEnabled}
                 themeMode={themeMode}
                 colors={customColors}
               />)
