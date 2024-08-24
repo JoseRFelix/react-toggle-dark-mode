@@ -69,7 +69,7 @@ export const SunAndMoonAnimatedSvg = ({
         leftSemiCircleFill = moonFill;
         leftSemiCircleStroke = moonStroke;
 
-        // TODO:
+        // TODO: use memo etc to save last colour
         // Should be the previous value (either light or system)
         rightSemiCircleFill = sunFill;
         rightSemiCircleStroke = sunStroke;

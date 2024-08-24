@@ -27,13 +27,23 @@ const App = () => {
   return (
     <div
       style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow:'hidden',
+      }}
+    >
+    <div
+      style={{
         minHeight: '100vh',
+        width: '50vw',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         gap: '5em',
-        background: themeMode === ThemeMode.Dark ? '#1b242c' : '#eee',
+        background: '#eee',
         transition: '0.2s background',
       }}
     >
@@ -46,27 +56,23 @@ const App = () => {
           gap: '2em',
         }}
       >
-        <h1 style={{color: themeMode === ThemeMode.Dark ? '#eee' : '#1b242c'}}>Default</h1>
+        <h1 style={{color: '#1b242c'}}>Default</h1>
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           size={200}
         />
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           size={120}
         />
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           size={80}
         />
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           size={30}
@@ -81,36 +87,113 @@ const App = () => {
           gap: '2em',
         }}
       >
-        <h1 style={{color: themeMode === ThemeMode.Dark ? '#eee' : '#1b242c'}}>Customised</h1>
+        <h1 style={{color: '#1b242c'}}>Customised</h1>
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           colors={customColors}
           size={200}
         />
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           colors={customColors}
           size={120}
         />
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           colors={customColors}
           size={80}
         />
         <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
           themeMode={themeMode}
           onChange={cycleThemeMode}
           colors={customColors}
           size={30}
         />
       </div>
+    </div>
+    <div
+      style={{
+        minHeight: '100vh',
+        width: '50vw',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '5em',
+        background: '#1b242c',
+        transition: '0.2s background',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '2em',
+        }}
+      >
+        <h1 style={{color: '#eee'}}>Default</h1>
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          size={200}
+        />
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          size={120}
+        />
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          size={80}
+        />
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          size={30}
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '2em',
+        }}
+      >
+        <h1 style={{color: '#eee'}}>Customised</h1>
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          size={200}
+        />
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          size={120}
+        />
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          size={80}
+        />
+        <DarkModeSwitch
+          themeMode={themeMode}
+          onChange={cycleThemeMode}
+          colors={customColors}
+          size={30}
+        />
+      </div>
+    </div>
     </div>
   );
 };
