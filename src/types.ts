@@ -10,7 +10,13 @@ type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
 
 // Utility to promote existing type to use SpringValues
 type WithSpringValues<T> = {
-  [K in keyof T]: T[K] extends infer U ? (U extends string ? SpringValue<U> : U extends number ? SpringValue<U> : U) : never;
+  [K in keyof T]: T[K] extends infer U
+    ? U extends string
+      ? SpringValue<U>
+      : U extends number
+      ? SpringValue<U>
+      : U
+    : never;
 };
 
 type SVGProperties = {
@@ -60,6 +66,7 @@ export interface ColorOptions {
 
 export interface Props extends SVGProps {
   onChange: (themeMode: ThemeMode) => void;
+  isSystemModeEnabled?: boolean;
   themeMode: ThemeMode;
   style?: React.CSSProperties;
   size?: number | string;
@@ -73,6 +80,7 @@ export interface SunAndMoonAnimatedSvgProps {
   style?: React.CSSProperties;
   onClick: () => void;
   themeMode: ThemeMode;
+  isSystemModeEnabled: boolean;
   halfSunLeftFill: string;
   halfSunLeftStroke: string;
   halfSunRightFill: string;
@@ -88,4 +96,4 @@ export interface SunAndMoonAnimatedSvgProps {
   circleProps: WithSpringValues<CircleProperties>;
   maskProps: WithSpringValues<MaskProperties>;
   linesProps: WithSpringValues<LinesProperties>;
-};
+}

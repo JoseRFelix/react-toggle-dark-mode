@@ -19,182 +19,157 @@ export const customColors = {
 
 const App = () => {
   const [themeMode, setThemeMode] = React.useState(ThemeMode.System);
+  const [isSystemModeEnabled, setIsSystemModeEnabled] = React.useState(true);
 
   const cycleThemeMode = (themeMode: ThemeMode) => {
     setThemeMode(themeMode);
   };
 
+  const toggleIsSystemModeEnabled = () => {
+    if (themeMode === ThemeMode.System) {
+      setThemeMode(ThemeMode.Light);
+    }
+    setIsSystemModeEnabled(prevState => !prevState);
+  };
+
+  const sizesToDemo = [200, 120, 80, 30]
+
   return (
     <div
       style={{
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        overflow:'hidden',
-      }}
-    >
-    <div
+        flexDirection: 'column',
+      }}>
+        <div
       style={{
-        minHeight: '100vh',
-        width: '50vw',
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
+        flexDirection: 'column',
+        minHeight: '15vh',
         alignItems: 'center',
-        gap: '5em',
-        background: '#eee',
-        transition: '0.2s background',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '2em',
-        }}
-      >
-        <h1 style={{color: '#1b242c'}}>Default</h1>
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={200}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={120}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={80}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={30}
-        />
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '2em',
-        }}
-      >
-        <h1 style={{color: '#1b242c'}}>Customised</h1>
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={200}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={120}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={80}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={30}
-        />
-      </div>
-    </div>
-    <div
-      style={{
-        minHeight: '100vh',
-        width: '50vw',
-        display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        gap: '5em',
-        background: '#1b242c',
-        transition: '0.2s background',
-      }}
-    >
+        backgroundColor: '#d9d9d9',
+      }}>
+        <h1>react-toggle-dark-mode</h1>
+      <div>
+      <input
+          type="checkbox"
+          checked={isSystemModeEnabled}
+          onChange={toggleIsSystemModeEnabled}
+        />
+        <label><strong>isSystemModeEnabled</strong></label>
+      </div>
+        </div>
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '2em',
-        }}
-      >
-        <h1 style={{color: '#eee'}}>Default</h1>
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={200}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={120}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={80}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          size={30}
-        />
+          flexDirection: 'row',
+          minHeight: '85vh',
+          overflow: 'hidden',
+        }}>
+          <div
+            style={{
+              width: '50vw',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '5em',
+              background: '#eee',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '2em',
+              }}
+            >
+            <h2 style={{color: '#1b242c'}}>Default</h2>
+             {sizesToDemo.map((size) => 
+              (<DarkModeSwitch
+                size={size}
+                onChange={cycleThemeMode}
+                isSystemModeEnabled={isSystemModeEnabled}
+                themeMode={themeMode}
+              />)
+             )}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '2em',
+              }}
+            >
+            <h2 style={{color: '#1b242c'}}>Customised</h2>
+            {sizesToDemo.map((size) => 
+              (<DarkModeSwitch
+                size={size}
+                onChange={cycleThemeMode}
+                isSystemModeEnabled={isSystemModeEnabled}
+                themeMode={themeMode}
+                colors={customColors}
+              />)
+             )}
+            </div>
+          </div>
+          <div
+            style={{
+              width: '50vw',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '5em',
+              background: '#1b242c',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '2em',
+              }}
+            >
+            <h2 style={{color: '#eee'}}>Default</h2>
+            {sizesToDemo.map((size) => 
+              (<DarkModeSwitch
+                size={size}
+                onChange={cycleThemeMode}
+                isSystemModeEnabled={isSystemModeEnabled}
+                themeMode={themeMode}
+              />)
+             )}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '2em',
+              }}
+            >
+            <h2 style={{color: '#eee'}}>Customised</h2>
+            {sizesToDemo.map((size) => 
+              (<DarkModeSwitch
+                size={size}
+                onChange={cycleThemeMode}
+                isSystemModeEnabled={isSystemModeEnabled}
+                themeMode={themeMode}
+                colors={customColors}
+              />)
+             )}
+            </div>
+          </div>
+        </div>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '2em',
-        }}
-      >
-        <h1 style={{color: '#eee'}}>Customised</h1>
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={200}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={120}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={80}
-        />
-        <DarkModeSwitch
-          themeMode={themeMode}
-          onChange={cycleThemeMode}
-          colors={customColors}
-          size={30}
-        />
-      </div>
-    </div>
-    </div>
   );
 };
 
