@@ -121,18 +121,28 @@ export const DarkModeSwitch = ({
   };
 
   return (
-    <SunAndMoonAnimatedSvg
-      width={size}
-      height={size}
-      style={style}
+    <button
       onClick={cycle}
-      themeMode={themeMode}
-      isSystemModeEnabled={isSystemModeEnabled}
-      {...colors}
-      svgProps={svgProps}
-      circleProps={circleProps}
-      maskProps={maskProps}
-      linesProps={linesProps}
-    />
+      style={{
+        background: 'none',
+        border: 'none',
+        padding: 0,
+        margin: 0,
+        cursor: 'pointer',
+      }}
+    >
+      <SunAndMoonAnimatedSvg
+        width={size}
+        height={size}
+        style={style}
+        themeMode={themeMode}
+        isSystemModeEnabled={isSystemModeEnabled}
+        {...colors}
+        svgProps={svgProps}
+        circleProps={circleProps}
+        maskProps={maskProps}
+        linesProps={linesProps}
+      />
+    </button>
   );
 };

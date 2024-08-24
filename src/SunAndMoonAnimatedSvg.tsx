@@ -11,7 +11,6 @@ export const SunAndMoonAnimatedSvg = ({
   width,
   height,
   style,
-  onClick,
   themeMode,
   isSystemModeEnabled,
   halfSunLeftFill,
@@ -116,9 +115,7 @@ export const SunAndMoonAnimatedSvg = ({
       strokeLinejoin="round"
       shapeRendering="geometricPrecision"
       imageRendering="optimizeQuality"
-      onClick={onClick}
       style={{
-        cursor: 'pointer',
         ...svgProps,
         ...style,
       }}

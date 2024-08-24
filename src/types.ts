@@ -78,7 +78,6 @@ export interface SunAndMoonAnimatedSvgProps {
   width: number | string;
   height: number | string;
   style?: React.CSSProperties;
-  onClick: () => void;
   themeMode: ThemeMode;
   isSystemModeEnabled: boolean;
   halfSunLeftFill: string;
