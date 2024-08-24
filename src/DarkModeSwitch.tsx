@@ -53,12 +53,12 @@ export const defaultProperties: AnimationProperties = {
 };
 
 export const defaultColors: ColorOptions = {
-  halfSunLeftFill: '#444444',
-  halfSunLeftStroke: '#444444',
-  halfSunRightFill: '#d4b511',
-  halfSunRightStroke: '#d4b511',
-  halfSunLeftBeamStroke: '#ccc160',
-  halfSunRightBeamStroke: '#5e5e53',
+  halfSunLeftFill: '#ffca00',
+  halfSunLeftStroke: '#ffca00',
+  halfSunRightFill: '#44415d',
+  halfSunRightStroke: '#44415d',
+  halfSunLeftBeamStroke: '#ffe873',
+  halfSunRightBeamStroke: '#c0b9c7',
   sunFill: '#ffd700',
   sunStroke: '#444444',
   sunBeamStroke: '#444444',
