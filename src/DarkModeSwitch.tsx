@@ -82,10 +82,13 @@ export const DarkModeSwitch = ({
     return animationProperties;
   }, [animationProperties]);
 
-  const mergedColors = React.useMemo(() => ({
-    ...defaultColors,
-    ...colors,
-  }), [colors]);
+  const mergedColors = React.useMemo(
+    () => ({
+      ...defaultColors,
+      ...colors,
+    }),
+    [colors]
+  );
 
   const getNextThemeMode = (current: ThemeMode): ThemeMode => {
     switch (current) {

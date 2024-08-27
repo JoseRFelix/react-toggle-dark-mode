@@ -58,8 +58,8 @@ export const SunAndMoonAnimatedSvg = ({
 
     // These are unused visually in dark mode but we set them to the theme we're transitionig from to maintain accurate animation colors
     leftBeamStroke: isSystemThemeModeEnabled
-    ? systemColors.leftBeamStroke
-    : lightColors.leftBeamStroke,
+      ? systemColors.leftBeamStroke
+      : lightColors.leftBeamStroke,
     rightBeamStroke: isSystemThemeModeEnabled
       ? systemColors.rightBeamStroke
       : lightColors.rightBeamStroke,
@@ -191,12 +191,36 @@ export const SunAndMoonAnimatedSvg = ({
 
       {/* Beam Both sides */}
       <animated.g clipPath={`url(#${beamClipPathLeftId})`} style={linesProps}>
-        <animated.line x1="12" y1="1" x2="12" y2="3" stroke={themeColorsProps.leftBeamStroke} />
-        <animated.line x1="12" y1="21" x2="12" y2="23" stroke={themeColorsProps.leftBeamStroke} />
+        <animated.line
+          x1="12"
+          y1="1"
+          x2="12"
+          y2="3"
+          stroke={themeColorsProps.leftBeamStroke}
+        />
+        <animated.line
+          x1="12"
+          y1="21"
+          x2="12"
+          y2="23"
+          stroke={themeColorsProps.leftBeamStroke}
+        />
       </animated.g>
       <animated.g clipPath={`url(#${beamClipPartRightId})`} style={linesProps}>
-        <animated.line x1="12" y1="1" x2="12" y2="3" stroke={themeColorsProps.rightBeamStroke} />
-        <animated.line x1="12" y1="21" x2="12" y2="23" stroke={themeColorsProps.rightBeamStroke} />
+        <animated.line
+          x1="12"
+          y1="1"
+          x2="12"
+          y2="3"
+          stroke={themeColorsProps.rightBeamStroke}
+        />
+        <animated.line
+          x1="12"
+          y1="21"
+          x2="12"
+          y2="23"
+          stroke={themeColorsProps.rightBeamStroke}
+        />
       </animated.g>
 
       <animated.g style={linesProps}>
@@ -208,7 +232,13 @@ export const SunAndMoonAnimatedSvg = ({
           y2="18.36"
           stroke={themeColorsProps.leftBeamStroke}
         />
-        <animated.line x1="1" y1="12" x2="3" y2="12" stroke={themeColorsProps.leftBeamStroke} />
+        <animated.line
+          x1="1"
+          y1="12"
+          x2="3"
+          y2="12"
+          stroke={themeColorsProps.leftBeamStroke}
+        />
         <animated.line
           x1="4.22"
           y1="4.22"
@@ -224,7 +254,13 @@ export const SunAndMoonAnimatedSvg = ({
           y2="4.22"
           stroke={themeColorsProps.rightBeamStroke}
         />
-        <animated.line x1="21" y1="12" x2="23" y2="12" stroke={themeColorsProps.rightBeamStroke} />
+        <animated.line
+          x1="21"
+          y1="12"
+          x2="23"
+          y2="12"
+          stroke={themeColorsProps.rightBeamStroke}
+        />
         <animated.line
           x1="18.36"
           y1="18.36"
