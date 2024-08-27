@@ -70,7 +70,7 @@ export interface Props extends SVGProps {
   themeMode: ThemeMode;
   style?: React.CSSProperties;
   size?: number | string;
-  colors?: ColorOptions;
+  colors?: Partial<ColorOptions>;
   animationProperties?: AnimationProperties;
 }
 
@@ -80,17 +80,7 @@ export interface SunAndMoonAnimatedSvgProps {
   style?: React.CSSProperties;
   themeMode: ThemeMode;
   isSystemThemeModeEnabled: boolean;
-  halfSunLeftFill: string;
-  halfSunLeftStroke: string;
-  halfSunLeftBeamStroke: string;
-  halfMoonRightFill: string;
-  halfMoonRightStroke: string;
-  halfMoonRightBeamStroke: string;
-  sunFill: string;
-  sunStroke: string;
-  sunBeamStroke: string;
-  moonFill: string;
-  moonStroke: string;
+  colors: ColorOptions;
   svgProps: WithSpringValues<SVGProperties>;
   circleProps: WithSpringValues<CircleProperties>;
   maskProps: WithSpringValues<MaskProperties>;

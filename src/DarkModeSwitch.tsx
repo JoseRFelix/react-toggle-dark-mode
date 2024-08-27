@@ -71,7 +71,7 @@ export const DarkModeSwitch = ({
   isSystemThemeModeEnabled = true,
   themeMode = isSystemThemeModeEnabled ? ThemeMode.System : ThemeMode.Light,
   size = 24,
-  colors = defaultColors,
+  colors,
   animationProperties = defaultProperties,
   style,
 }: Props) => {
@@ -101,6 +101,11 @@ export const DarkModeSwitch = ({
     ...lines,
     config: animationProperties.springConfig,
   });
+
+  const mergedColors = React.useMemo(() => ({
+    ...defaultColors,
+    ...colors,
+  }), [colors]);
 
   const getNextThemeMode = (current: ThemeMode): ThemeMode => {
     switch (current) {
@@ -137,7 +142,7 @@ export const DarkModeSwitch = ({
         style={style}
         themeMode={themeMode}
         isSystemThemeModeEnabled={isSystemThemeModeEnabled}
-        {...colors}
+        colors={mergedColors}
         svgProps={svgProps}
         circleProps={circleProps}
         maskProps={maskProps}
