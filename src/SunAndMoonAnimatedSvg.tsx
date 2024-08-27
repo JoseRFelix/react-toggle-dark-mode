@@ -53,17 +53,13 @@ export const SunAndMoonAnimatedSvg = ({
   const darkColors = {
     leftSemiCircleFill: colors.moonFill,
     leftSemiCircleStroke: colors.moonStroke,
+    rightSemiCircleFill: colors.moonFill,
+    rightSemiCircleStroke: colors.moonStroke,
 
     // These are unused visually in dark mode but we set them to the theme we're transitionig from to maintain accurate animation colors
     leftBeamStroke: isSystemThemeModeEnabled
     ? systemColors.leftBeamStroke
     : lightColors.leftBeamStroke,
-    rightSemiCircleFill: isSystemThemeModeEnabled
-      ? systemColors.rightSemiCircleFill
-      : lightColors.rightSemiCircleFill,
-    rightSemiCircleStroke: isSystemThemeModeEnabled
-      ? systemColors.rightSemiCircleStroke
-      : lightColors.rightSemiCircleStroke,
     rightBeamStroke: isSystemThemeModeEnabled
       ? systemColors.rightBeamStroke
       : lightColors.rightBeamStroke,
@@ -105,6 +101,10 @@ export const SunAndMoonAnimatedSvg = ({
   });
   const linesProps = useSpring({
     ...lines,
+    config: animationProperties.springConfig,
+  });
+  const themeColorsProps = useSpring({
+    ...themeColors,
     config: animationProperties.springConfig,
   });
 
@@ -150,9 +150,13 @@ export const SunAndMoonAnimatedSvg = ({
         />
       </mask>
       <mask id={rightSemiCircleMaskId}>
-        {/* The second mask covers the right half of the circle */}
         {themeMode !== ThemeMode.Dark && (
           <rect x="50%" y="0" width="50%" height="100%" fill="white" />
+        )}
+        {themeMode === ThemeMode.Dark && (
+          <>
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+          </>
         )}
         <animated.circle
           r="9"
@@ -167,8 +171,8 @@ export const SunAndMoonAnimatedSvg = ({
         cx="12"
         cy="12"
         r="5"
-        fill={themeColors.leftSemiCircleFill}
-        stroke={themeColors.leftSemiCircleStroke}
+        fill={themeColorsProps.leftSemiCircleFill}
+        stroke={themeColorsProps.leftSemiCircleStroke}
         // @ts-ignore
         style={circleProps}
         mask={`url(#${leftSemiCircleMaskId})`}
@@ -178,8 +182,8 @@ export const SunAndMoonAnimatedSvg = ({
         cx="12"
         cy="12"
         r="5"
-        fill={themeColors.rightSemiCircleFill}
-        stroke={themeColors.rightSemiCircleStroke}
+        fill={themeColorsProps.rightSemiCircleFill}
+        stroke={themeColorsProps.rightSemiCircleStroke}
         // @ts-ignore
         style={circleProps}
         mask={`url(#${rightSemiCircleMaskId})`}
@@ -187,46 +191,46 @@ export const SunAndMoonAnimatedSvg = ({
 
       {/* Beam Both sides */}
       <animated.g clipPath={`url(#${beamClipPathLeftId})`} style={linesProps}>
-        <line x1="12" y1="1" x2="12" y2="3" stroke={themeColors.leftBeamStroke} />
-        <line x1="12" y1="21" x2="12" y2="23" stroke={themeColors.leftBeamStroke} />
+        <animated.line x1="12" y1="1" x2="12" y2="3" stroke={themeColorsProps.leftBeamStroke} />
+        <animated.line x1="12" y1="21" x2="12" y2="23" stroke={themeColorsProps.leftBeamStroke} />
       </animated.g>
       <animated.g clipPath={`url(#${beamClipPartRightId})`} style={linesProps}>
-        <line x1="12" y1="1" x2="12" y2="3" stroke={themeColors.rightBeamStroke} />
-        <line x1="12" y1="21" x2="12" y2="23" stroke={themeColors.rightBeamStroke} />
+        <animated.line x1="12" y1="1" x2="12" y2="3" stroke={themeColorsProps.rightBeamStroke} />
+        <animated.line x1="12" y1="21" x2="12" y2="23" stroke={themeColorsProps.rightBeamStroke} />
       </animated.g>
 
       <animated.g style={linesProps}>
         {/* Beam Left side */}
-        <line
+        <animated.line
           x1="4.22"
           y1="19.78"
           x2="5.64"
           y2="18.36"
-          stroke={themeColors.leftBeamStroke}
+          stroke={themeColorsProps.leftBeamStroke}
         />
-        <line x1="1" y1="12" x2="3" y2="12" stroke={themeColors.leftBeamStroke} />
-        <line
+        <animated.line x1="1" y1="12" x2="3" y2="12" stroke={themeColorsProps.leftBeamStroke} />
+        <animated.line
           x1="4.22"
           y1="4.22"
           x2="5.64"
           y2="5.64"
-          stroke={themeColors.leftBeamStroke}
+          stroke={themeColorsProps.leftBeamStroke}
         />
         {/* Beam Right side */}
-        <line
+        <animated.line
           x1="18.36"
           y1="5.64"
           x2="19.78"
           y2="4.22"
-          stroke={themeColors.rightBeamStroke}
+          stroke={themeColorsProps.rightBeamStroke}
         />
-        <line x1="21" y1="12" x2="23" y2="12" stroke={themeColors.rightBeamStroke} />
-        <line
+        <animated.line x1="21" y1="12" x2="23" y2="12" stroke={themeColorsProps.rightBeamStroke} />
+        <animated.line
           x1="18.36"
           y1="18.36"
           x2="19.78"
           y2="19.78"
-          stroke={themeColors.rightBeamStroke}
+          stroke={themeColorsProps.rightBeamStroke}
         />
       </animated.g>
     </animated.svg>
