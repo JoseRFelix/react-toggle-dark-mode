@@ -3,6 +3,20 @@ import { useSpring } from 'react-spring';
 import { Props, AnimationProperties, ColorOptions, ThemeMode } from './types';
 import { SunAndMoonAnimatedSvg } from './SunAndMoonAnimatedSvg';
 
+export const defaultColors: ColorOptions = {
+  halfSunLeftFill: '#ffca00',
+  halfSunLeftStroke: '#ffca00',
+  halfSunLeftBeamStroke: '#ffe873',
+  halfMoonRightFill: '#44415d',
+  halfMoonRightStroke: '#44415d',
+  halfMoonRightBeamStroke: '#c0b9c7',
+  sunFill: '#ffd700',
+  sunStroke: '#444444',
+  sunBeamStroke: '#444444',
+  moonFill: '#f5f5f5',
+  moonStroke: '#bbbbbb',
+};
+
 export const defaultProperties: AnimationProperties = {
   [ThemeMode.System]: {
     svg: {
@@ -50,20 +64,6 @@ export const defaultProperties: AnimationProperties = {
     },
   },
   springConfig: { mass: 4, tension: 250, friction: 35, clamp: true },
-};
-
-export const defaultColors: ColorOptions = {
-  halfSunLeftFill: '#ffca00',
-  halfSunLeftStroke: '#ffca00',
-  halfSunLeftBeamStroke: '#ffe873',
-  halfMoonRightFill: '#44415d',
-  halfMoonRightStroke: '#44415d',
-  halfMoonRightBeamStroke: '#c0b9c7',
-  sunFill: '#ffd700',
-  sunStroke: '#444444',
-  sunBeamStroke: '#444444',
-  moonFill: '#f5f5f5',
-  moonStroke: '#bbbbbb',
 };
 
 export const DarkModeSwitch = ({
