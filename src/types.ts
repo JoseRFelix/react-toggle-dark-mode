@@ -1,4 +1,4 @@
-import { SpringConfig, SpringValue } from 'react-spring';
+import { SpringConfig } from 'react-spring';
 
 export enum ThemeMode {
   System = 'System',
@@ -7,17 +7,6 @@ export enum ThemeMode {
 }
 
 type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
-
-// Utility to promote existing type to use SpringValues
-type WithSpringValues<T> = {
-  [K in keyof T]: T[K] extends infer U
-    ? U extends string
-      ? SpringValue<U>
-      : U extends number
-      ? SpringValue<U>
-      : U
-    : never;
-};
 
 type SVGProperties = {
   transform: string;
@@ -81,8 +70,5 @@ export interface SunAndMoonAnimatedSvgProps {
   themeMode: ThemeMode;
   isSystemThemeModeEnabled: boolean;
   colors: ColorOptions;
-  svgProps: WithSpringValues<SVGProperties>;
-  circleProps: WithSpringValues<CircleProperties>;
-  maskProps: WithSpringValues<MaskProperties>;
-  linesProps: WithSpringValues<LinesProperties>;
+  animationProperties: AnimationProperties;
 }

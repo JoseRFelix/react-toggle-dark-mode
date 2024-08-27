@@ -1,5 +1,5 @@
 import React from 'react';
-import { animated } from 'react-spring';
+import { animated, useSpring } from 'react-spring';
 import { SunAndMoonAnimatedSvgProps, ThemeMode } from './types';
 import { generateUniqueId } from './utils';
 
@@ -14,10 +14,7 @@ export const SunAndMoonAnimatedSvg = ({
   themeMode,
   isSystemThemeModeEnabled,
   colors,
-  svgProps,
-  circleProps,
-  maskProps,
-  linesProps,
+  animationProperties,
 }: SunAndMoonAnimatedSvgProps) => {
   // Avoid id collisions in our SVG
   const prefix = 'react-toggle-dark-mode';
@@ -90,6 +87,26 @@ export const SunAndMoonAnimatedSvg = ({
     default:
       throw Error(`Unsupported theme mode: ${themeMode}`);
   }
+
+  // Spring animations
+  const { svg, circle, lines, mask } = animationProperties[themeMode];
+
+  const svgProps = useSpring({
+    ...svg,
+    config: animationProperties.springConfig,
+  });
+  const circleProps = useSpring({
+    ...circle,
+    config: animationProperties.springConfig,
+  });
+  const maskProps = useSpring({
+    ...mask,
+    config: animationProperties.springConfig,
+  });
+  const linesProps = useSpring({
+    ...lines,
+    config: animationProperties.springConfig,
+  });
 
   return (
     <animated.svg

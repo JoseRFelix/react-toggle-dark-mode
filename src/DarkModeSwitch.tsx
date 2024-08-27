@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useSpring } from 'react-spring';
 import { Props, AnimationProperties, ColorOptions, ThemeMode } from './types';
 import { SunAndMoonAnimatedSvg } from './SunAndMoonAnimatedSvg';
 
@@ -83,25 +82,6 @@ export const DarkModeSwitch = ({
     return animationProperties;
   }, [animationProperties]);
 
-  const { svg, circle, lines, mask } = properties[themeMode];
-
-  const svgProps = useSpring({
-    ...svg,
-    config: animationProperties.springConfig,
-  });
-  const circleProps = useSpring({
-    ...circle,
-    config: animationProperties.springConfig,
-  });
-  const maskProps = useSpring({
-    ...mask,
-    config: animationProperties.springConfig,
-  });
-  const linesProps = useSpring({
-    ...lines,
-    config: animationProperties.springConfig,
-  });
-
   const mergedColors = React.useMemo(() => ({
     ...defaultColors,
     ...colors,
@@ -143,10 +123,7 @@ export const DarkModeSwitch = ({
         themeMode={themeMode}
         isSystemThemeModeEnabled={isSystemThemeModeEnabled}
         colors={mergedColors}
-        svgProps={svgProps}
-        circleProps={circleProps}
-        maskProps={maskProps}
-        linesProps={linesProps}
+        animationProperties={properties}
       />
     </button>
   );
