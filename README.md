@@ -17,7 +17,11 @@
 
 > 🌃 Animated dark mode toggle as seen in blogs!
 
+<div align="center">
+
 ![Interactive sun and moon transition](./docs/demo.gif)
+
+</div>
 
 ## Prerequisites
 
