@@ -136,10 +136,10 @@ export const SunAndMoonAnimatedSvg = ({
           </>
         )}
         <animated.circle
-          // @ts-ignore
-          style={maskProps}
           r="9"
           fill="black"
+          // @ts-ignore
+          style={maskProps}
         />
       </mask>
       <mask id={rightSemiCircleMaskId}>
@@ -148,10 +148,10 @@ export const SunAndMoonAnimatedSvg = ({
           <rect x="50%" y="0" width="50%" height="100%" fill="white" />
         )}
         <animated.circle
-          // @ts-ignore
-          style={maskProps}
           r="9"
           fill="black"
+          // @ts-ignore
+          style={maskProps}
         />
       </mask>
 
