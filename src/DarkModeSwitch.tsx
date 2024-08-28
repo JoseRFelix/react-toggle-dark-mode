@@ -112,6 +112,9 @@ export const DarkModeSwitch = ({
     <button
       onClick={cycle}
       style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         background: 'none',
         border: 'none',
         padding: 0,
