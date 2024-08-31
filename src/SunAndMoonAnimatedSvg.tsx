@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { SunAndMoonAnimatedSvgProps, ThemeMode } from './types';
-import { generateUniqueId } from './utils';
 
 /**
  * Create a sun and moon animated SVG which animated between three different states (Half Sun/Half Moon, Sun and Moon).
@@ -17,17 +16,13 @@ export const SunAndMoonAnimatedSvg = ({
   animationProperties,
 }: SunAndMoonAnimatedSvgProps) => {
   // Avoid id collisions in our SVG
+  const id = useId();
+  
   const prefix = 'react-toggle-dark-mode';
-  const beamClipPathLeftId = generateUniqueId(`${prefix}-beam-clip-path-left`);
-  const beamClipPartRightId = generateUniqueId(
-    `${prefix}-beam-clip-path-right`
-  );
-  const leftSemiCircleMaskId = generateUniqueId(
-    `${prefix}-left-semi-circle-mask`
-  );
-  const rightSemiCircleMaskId = generateUniqueId(
-    `${prefix}-right-semi-circle-mask`
-  );
+  const beamClipPathLeftId = `${prefix}-${id}-beam-clip-path-left`;
+  const beamClipPartRightId = `${prefix}-${id}-beam-clip-path-right`;
+  const leftSemiCircleMaskId = `${prefix}-${id}-left-semi-circle-mask`;
+  const rightSemiCircleMaskId = `${prefix}-${id}-right-semi-circle-mask`;
 
   // Colour corrections
   const systemColors = {
