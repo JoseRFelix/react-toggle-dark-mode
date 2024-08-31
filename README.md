@@ -91,6 +91,42 @@ const App = () => {
 };
 ```
 
+### Trigger click programmatically
+
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { DarkModeSwitch, DarkModeSwitchHandle, ThemeMode } from 'react-toggle-dark-mode';
+
+const App = () => {
+  const [themeMode, setThemeMode] = React.useState(ThemeMode.Light);
+  const darkModeSwitchRef = React.useRef<DarkModeSwitchHandle>(null);
+
+  const toggleThemeMode = (themeMode: ThemeMode) => {
+    toggleThemeMode(themeMode);
+  };
+
+  const triggerClick = () => {
+    if (darkModeSwitchRef.current) {
+      darkModeSwitchRef.current.click();
+    }
+  };
+
+  return (
+    <div>
+      <DarkModeSwitch
+        ref={darkModeSwitchRef}
+        onChange={toggleThemeMode}
+        isSystemThemeModeEnabled={false}
+        themeMode={themeMode}
+        size={120}
+      />
+      <button onClick={triggerClick}>Trigger Click</button>
+    <div>
+  );
+};
+```
+
 ## API
 
 ### DarkModeSwitch

@@ -6,8 +6,6 @@ export enum ThemeMode {
   Dark = 'Dark',
 }
 
-type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
-
 type SVGProperties = {
   transform: string;
 };
@@ -53,7 +51,11 @@ export interface ColorOptions {
   moonStroke: string;
 }
 
-export interface Props extends SVGProps {
+export interface DarkModeSwitchHandle {
+  click: () => void;
+}
+
+export interface Props {
   onChange: (themeMode: ThemeMode) => void;
   isSystemThemeModeEnabled?: boolean;
   themeMode: ThemeMode;

@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client'; 
-import { DarkModeSwitch, ThemeMode } from '../.';
+import { DarkModeSwitch, ThemeMode, DarkModeSwitchHandle } from '../.';
 
 export const customColors = {
   halfSunLeftFill: '#3790f0',
@@ -20,7 +20,8 @@ export const customColors = {
 const App = () => {
   const [themeMode, setThemeMode] = React.useState(ThemeMode.System);
   const [isSystemThemeModeEnabled, setIsSystemThemeModeEnabled] = React.useState(true);
-
+  const darkModeSwitchRef = React.useRef<DarkModeSwitchHandle>(null);
+  
   const cycleThemeMode = (themeMode: ThemeMode) => {
     setThemeMode(themeMode);
   };
@@ -30,6 +31,12 @@ const App = () => {
       setThemeMode(ThemeMode.Light);
     }
     setIsSystemThemeModeEnabled(prevState => !prevState);
+  };
+
+  const triggerClick = () => {
+    if (darkModeSwitchRef.current) {
+      darkModeSwitchRef.current.click();
+    }
   };
 
   const sizesToDemo = [200, 120, 80, 30]
@@ -50,13 +57,18 @@ const App = () => {
         backgroundColor: '#d9d9d9',
       }}>
         <h1>react-toggle-dark-mode</h1>
-      <div>
-      <input
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        gap: '1em',
+      }}>
+        <input
           type="checkbox"
           checked={isSystemThemeModeEnabled}
           onChange={toggleisSystemThemeModeEnabled}
         />
         <label><strong>isSystemThemeModeEnabled</strong></label>
+        <button onClick={triggerClick}>Trigger Click</button>
       </div>
         </div>
       <div
@@ -89,6 +101,8 @@ const App = () => {
             <h2 style={{color: '#1b242c'}}>Default</h2>
              {sizesToDemo.map((size) => 
               (<DarkModeSwitch
+                key={size}
+                ref={darkModeSwitchRef}
                 size={size}
                 onChange={cycleThemeMode}
                 isSystemThemeModeEnabled={isSystemThemeModeEnabled}
@@ -108,6 +122,8 @@ const App = () => {
             <h2 style={{color: '#1b242c'}}>Customised</h2>
             {sizesToDemo.map((size) => 
               (<DarkModeSwitch
+                key={size}
+                ref={darkModeSwitchRef}
                 size={size}
                 onChange={cycleThemeMode}
                 isSystemThemeModeEnabled={isSystemThemeModeEnabled}
@@ -140,6 +156,8 @@ const App = () => {
             <h2 style={{color: '#eee'}}>Default</h2>
             {sizesToDemo.map((size) => 
               (<DarkModeSwitch
+                key={size}
+                ref={darkModeSwitchRef}
                 size={size}
                 onChange={cycleThemeMode}
                 isSystemThemeModeEnabled={isSystemThemeModeEnabled}
@@ -159,6 +177,8 @@ const App = () => {
             <h2 style={{color: '#eee'}}>Customised</h2>
             {sizesToDemo.map((size) => 
               (<DarkModeSwitch
+                key={size}
+                ref={darkModeSwitchRef}
                 size={size}
                 onChange={cycleThemeMode}
                 isSystemThemeModeEnabled={isSystemThemeModeEnabled}

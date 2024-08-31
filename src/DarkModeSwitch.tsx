@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Props, AnimationProperties, ColorOptions, ThemeMode } from './types';
+import {
+  Props,
+  AnimationProperties,
+  ColorOptions,
+  ThemeMode,
+  DarkModeSwitchHandle,
+} from './types';
 import { SunAndMoonAnimatedSvg } from './SunAndMoonAnimatedSvg';
 
 export const defaultColors: ColorOptions = {
@@ -65,72 +71,89 @@ export const defaultProperties: AnimationProperties = {
   springConfig: { mass: 4, tension: 250, friction: 35, clamp: true },
 };
 
-export const DarkModeSwitch = ({
-  onChange,
-  isSystemThemeModeEnabled = true,
-  themeMode = isSystemThemeModeEnabled ? ThemeMode.System : ThemeMode.Light,
-  size = 24,
-  colors,
-  animationProperties = defaultProperties,
-  style,
-}: Props) => {
-  const properties = React.useMemo(() => {
-    if (animationProperties !== defaultProperties) {
-      return Object.assign(defaultProperties, animationProperties);
-    }
+export const DarkModeSwitch = React.forwardRef<DarkModeSwitchHandle, Props>(
+  (
+    {
+      onChange,
+      isSystemThemeModeEnabled = true,
+      themeMode = isSystemThemeModeEnabled ? ThemeMode.System : ThemeMode.Light,
+      size = 24,
+      colors,
+      animationProperties = defaultProperties,
+      style,
+    },
+    ref
+  ) => {
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
 
-    return animationProperties;
-  }, [animationProperties]);
+    React.useImperativeHandle(ref, () => ({
+      click: () => {
+        if (buttonRef.current) {
+          // Programmatically trigger the button's click
+          buttonRef.current.click();
+        }
+      },
+    }));
 
-  const mergedColors = React.useMemo(
-    () => ({
-      ...defaultColors,
-      ...colors,
-    }),
-    [colors]
-  );
+    const properties = React.useMemo(() => {
+      if (animationProperties !== defaultProperties) {
+        return Object.assign(defaultProperties, animationProperties);
+      }
 
-  const getNextThemeMode = (current: ThemeMode): ThemeMode => {
-    switch (current) {
-      case ThemeMode.System:
-        return ThemeMode.Dark;
-      case ThemeMode.Dark:
-        return ThemeMode.Light;
-      case ThemeMode.Light:
-        return isSystemThemeModeEnabled ? ThemeMode.System : ThemeMode.Dark;
-      default:
-        throw Error(`Unsupported theme mode: ${current}`);
-    }
-  };
+      return animationProperties;
+    }, [animationProperties]);
 
-  const cycle = () => {
-    const nextThemeMode = getNextThemeMode(themeMode);
-    onChange(nextThemeMode);
-  };
+    const mergedColors = React.useMemo(
+      () => ({
+        ...defaultColors,
+        ...colors,
+      }),
+      [colors]
+    );
 
-  return (
-    <button
-      onClick={cycle}
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        background: 'none',
-        border: 'none',
-        padding: 0,
-        margin: 0,
-        cursor: 'pointer',
-      }}
-    >
-      <SunAndMoonAnimatedSvg
-        width={size}
-        height={size}
-        style={style}
-        themeMode={themeMode}
-        isSystemThemeModeEnabled={isSystemThemeModeEnabled}
-        colors={mergedColors}
-        animationProperties={properties}
-      />
-    </button>
-  );
-};
+    const getNextThemeMode = (current: ThemeMode): ThemeMode => {
+      switch (current) {
+        case ThemeMode.System:
+          return ThemeMode.Dark;
+        case ThemeMode.Dark:
+          return ThemeMode.Light;
+        case ThemeMode.Light:
+          return isSystemThemeModeEnabled ? ThemeMode.System : ThemeMode.Dark;
+        default:
+          throw Error(`Unsupported theme mode: ${current}`);
+      }
+    };
+
+    const cycle = () => {
+      const nextThemeMode = getNextThemeMode(themeMode);
+      onChange(nextThemeMode);
+    };
+
+    return (
+      <button
+        ref={buttonRef}
+        onClick={cycle}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          background: 'none',
+          border: 'none',
+          padding: 0,
+          margin: 0,
+          cursor: 'pointer',
+        }}
+      >
+        <SunAndMoonAnimatedSvg
+          width={size}
+          height={size}
+          style={style}
+          themeMode={themeMode}
+          isSystemThemeModeEnabled={isSystemThemeModeEnabled}
+          colors={mergedColors}
+          animationProperties={properties}
+        />
+      </button>
+    );
+  }
+);

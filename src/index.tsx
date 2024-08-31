@@ -1,3 +1,8 @@
 export { DarkModeSwitch } from './DarkModeSwitch';
 export { defaultProperties } from './DarkModeSwitch';
-export { ThemeMode, ColorOptions } from './types';
+export {
+  Props as DarkModeSwitchProps,
+  DarkModeSwitchHandle,
+  ThemeMode,
+  ColorOptions,
+} from './types';
