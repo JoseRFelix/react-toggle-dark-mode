@@ -1,14 +1,32 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { DarkModeSwitch } from '../src';
+import React from 'react';
+import { render, cleanup } from '@testing-library/react';
+import { DarkModeSwitch, ThemeMode } from '../src';
 
-describe('it renders', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <DarkModeSwitch onChange={() => {}} checked={false} />,
-      div
-    );
-    ReactDOM.unmountComponentAtNode(div);
+describe('DarkModeSwitch', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  describe('renders and unmounts without crashing', () => {
+    it('system theme', () => {
+      const { unmount } = render(
+        <DarkModeSwitch onChange={() => {}} themeMode={ThemeMode.System} />
+      );
+      unmount();
+    });
+
+    it('light theme', () => {
+      const { unmount } = render(
+        <DarkModeSwitch onChange={() => {}} themeMode={ThemeMode.Light} />
+      );
+      unmount();
+    });
+
+    it('dark theme', () => {
+      const { unmount } = render(
+        <DarkModeSwitch onChange={() => {}} themeMode={ThemeMode.Dark} />
+      );
+      unmount();
+    });
   });
 });

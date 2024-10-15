@@ -17,11 +17,15 @@
 
 > 🌃 Animated dark mode toggle as seen in blogs!
 
+<div align="center">
+
 ![Interactive sun and moon transition](./docs/demo.gif)
+
+</div>
 
 ## Prerequisites
 
-- node >=10
+- node >=20
 
 ## Installation
 
@@ -37,25 +41,88 @@ yarn add react-toggle-dark-mode
 
 ## Usage
 
+### 3-state (System, Light, Dark)
+
 ```jsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { DarkModeSwitch, ThemeMode } from 'react-toggle-dark-mode';
 
 const App = () => {
-  const [isDarkMode, setDarkMode] = React.useState(false);
+  const [themeMode, setThemeMode] = React.useState(ThemeMode.System);
 
-  const toggleDarkMode = (checked: boolean) => {
-    setDarkMode(checked);
+  const cycleThemeMode = (themeMode: ThemeMode) => {
+    setThemeMode(themeMode);
   };
 
   return (
     <DarkModeSwitch
-      style={{ marginBottom: '2rem' }}
-      checked={isDarkMode}
-      onChange={toggleDarkMode}
+      onChange={cycleThemeMode}
+      isSystemThemeModeEnabled={true}
+      themeMode={themeMode}
       size={120}
     />
+  );
+};
+```
+
+### 2-state (Light, Dark)
+
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { DarkModeSwitch, ThemeMode } from 'react-toggle-dark-mode';
+
+const App = () => {
+  const [themeMode, setThemeMode] = React.useState(ThemeMode.Light);
+
+  const toggleThemeMode = (themeMode: ThemeMode) => {
+    toggleThemeMode(themeMode);
+  };
+
+  return (
+    <DarkModeSwitch
+      onChange={toggleThemeMode}
+      isSystemThemeModeEnabled={false}
+      themeMode={themeMode}
+      size={120}
+    />
+  );
+};
+```
+
+### Trigger click programmatically
+
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { DarkModeSwitch, DarkModeSwitchHandle, ThemeMode } from 'react-toggle-dark-mode';
+
+const App = () => {
+  const [themeMode, setThemeMode] = React.useState(ThemeMode.Light);
+  const darkModeSwitchRef = React.useRef<DarkModeSwitchHandle>(null);
+
+  const toggleThemeMode = (themeMode: ThemeMode) => {
+    toggleThemeMode(themeMode);
+  };
+
+  const triggerClick = () => {
+    if (darkModeSwitchRef.current) {
+      darkModeSwitchRef.current.click();
+    }
+  };
+
+  return (
+    <div>
+      <DarkModeSwitch
+        ref={darkModeSwitchRef}
+        onChange={toggleThemeMode}
+        isSystemThemeModeEnabled={false}
+        themeMode={themeMode}
+        size={120}
+      />
+      <button onClick={triggerClick}>Trigger Click</button>
+    <div>
   );
 };
 ```
@@ -66,36 +133,41 @@ const App = () => {
 
 #### Props
 
-| Name                | Type                         | Default Value                   | Description                               |
-| ------------------- | ---------------------------- | ------------------------------- | ----------------------------------------- |
-| onChange            | \(checked: boolean\) => void |                                 | Event that triggers when icon is clicked. |
-| checked             | boolean                      | false                           | Current icon state.                       |
-| style               | Object                       |                                 | CSS properties object.                    |
-| size                | number                       | 24                              | SVG size.                                 |
-| animationProperties | Object                       | defaultProperties \(see below\) | Override default animation properties.    |
-| moonColor           | string                       | white                           | Color of the moon.                        |
-| sunColor            | string                       | black                           | Color of the sun.                         |
+| Name                      | Type                             | Default Value                                            | Description                                   |
+| ------------------------- | -------------------------------- | -------------------------------------------------------- | --------------------------------------------- |
+| onChange                  | \(themeMode: ThemeMode\) => void |                                                          | Event that triggers when icon is clicked.     |
+| isSystemThemeModeEnabled  | boolean                          | true                                                     | If the system theme mode is enabled.          |
+| themeMode                 | ThemeMode                        | ThemeMode.System (or ThemeMode.Light if System disabled) | Current theme mode.                           |
+| style                     | Object                           |                                                          | Custom SVG styling \(CSS properties object\). |
+| size                      | number                           | 24                                                       | SVG size.                                     |
+| colors                    | Partial<ColorOptions>            | defaultColors \(see below\)                              | Override default colors.                      |
+| animationProperties       | AnimationProperties              | defaultProperties \(see below\)                          | Override default animation properties.        |
+
+### Default Colors
+```javascript
+const defaultColors: ColorOptions = {
+  halfSunLeftFill: '#ffca00',
+  halfSunLeftStroke: '#ffca00',
+  halfSunLeftBeamStroke: '#ffe873',
+  halfMoonRightFill: '#44415d',
+  halfMoonRightStroke: '#44415d',
+  halfMoonRightBeamStroke: '#c0b9c7',
+  sunFill: '#ffd700',
+  sunStroke: '#444444',
+  sunBeamStroke: '#444444',
+  moonFill: '#f5f5f5',
+  moonStroke: '#bbbbbb',
+};
+```
 
 ### Default Animation Properties
 
 ```javascript
-const defaultProperties = {
-  dark: {
-    circle: {
-      r: 9,
-    },
-    mask: {
-      cx: '50%',
-      cy: '23%',
-    },
+const defaultProperties: AnimationProperties = {
+  [ThemeMode.System]: {
     svg: {
-      transform: 'rotate(40deg)',
+      transform: 'rotate(0deg)',
     },
-    lines: {
-      opacity: 0,
-    },
-  },
-  light: {
     circle: {
       r: 5,
     },
@@ -103,14 +175,41 @@ const defaultProperties = {
       cx: '100%',
       cy: '0%',
     },
+    lines: {
+      opacity: 1,
+    },
+  },
+  [ThemeMode.Light]: {
     svg: {
       transform: 'rotate(90deg)',
+    },
+    circle: {
+      r: 5,
+    },
+    mask: {
+      cx: '100%',
+      cy: '0%',
     },
     lines: {
       opacity: 1,
     },
   },
-  springConfig: { mass: 4, tension: 250, friction: 35 },
+  [ThemeMode.Dark]: {
+    svg: {
+      transform: 'rotate(40deg)',
+    },
+    circle: {
+      r: 9,
+    },
+    mask: {
+      cx: '50%',
+      cy: '23%',
+    },
+    lines: {
+      opacity: 0,
+    },
+  },
+  springConfig: { mass: 4, tension: 250, friction: 35, clamp: true },
 };
 ```
 
