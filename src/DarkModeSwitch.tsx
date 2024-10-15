@@ -143,6 +143,7 @@ export const DarkModeSwitch = React.forwardRef<DarkModeSwitchHandle, Props>(
           margin: 0,
           cursor: 'pointer',
         }}
+        aria-label='Cycle theme mode'
       >
         <SunAndMoonAnimatedSvg
           width={size}
