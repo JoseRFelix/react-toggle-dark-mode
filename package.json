@@ -1,9 +1,10 @@
 {
   "packageManager": "pnpm@10.28.2",
-  "version": "0.3.0",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "private": false,
   "files": [
     "dist",
     "src"
