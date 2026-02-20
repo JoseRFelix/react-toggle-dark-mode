@@ -6,37 +6,75 @@ jobs:
 
     steps:
       - name: Begin CI...
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Use Node 12
-        uses: actions/setup-node@v1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: 12.x
+          version: 10
 
-      - name: Use cached node_modules
-        uses: actions/cache@v1
+      - name: Use Node 20
+        uses: actions/setup-node@v4
         with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nodeModules-
+          node-version: 20.x
+          cache: pnpm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
         env:
           CI: true
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
         env:
           CI: true
 
       - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
+        run: pnpm test
         env:
           CI: true
 
       - name: Build
-        run: yarn build
+        run: pnpm build
+        env:
+          CI: true
+
+  react-compatibility:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        react-version: [16.14.0, 17.0.2, 18.3.1, 19.0.0]
+
+    steps:
+      - name: Begin compatibility checks...
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          CI: true
+
+      - name: Test React ${{ matrix.react-version }} compatibility
+        run: pnpm add -Dw react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} --ignore-scripts
+
+      - name: Run tests
+        run: pnpm test
+        env:
+          CI: true
+
+      - name: Build with matrix React version
+        run: pnpm build
         env:
           CI: true

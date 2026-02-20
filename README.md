@@ -29,10 +29,10 @@
 npm i react-toggle-dark-mode
 ```
 
-or with Yarn:
+or with pnpm:
 
 ```shell
-yarn add react-toggle-dark-mode
+pnpm add react-toggle-dark-mode
 ```
 
 ## Usage

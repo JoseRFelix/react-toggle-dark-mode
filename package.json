@@ -1,4 +1,5 @@
 {
+  "packageManager": "pnpm@10.28.2",
   "version": "1.1.1",
   "license": "MIT",
   "main": "dist/index.js",
@@ -13,17 +14,12 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
+    "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "prepare": "husky && tsdx build"
   },
   "peerDependencies": {
     "react": ">=16"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
   },
   "prettier": {
     "printWidth": 80,
@@ -44,16 +40,19 @@
   },
   "homepage": "https://github.com/JoseRFelix/react-toggle-dark-mode#readme",
   "devDependencies": {
-    "@types/react": "^16.9.43",
-    "@types/react-dom": "^16.9.8",
-    "husky": "^4.2.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "tsdx": "^0.13.2",
-    "tslib": "^2.0.0",
-    "typescript": "^3.9.6"
+    "@types/jest": "^24.9.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "bunchee": "^6.9.4",
+    "husky": "^9.1.7",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "tsdx": "^2.0.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
-    "react-spring": "^9.0.0-rc.3"
+    "@react-spring/web": "^10.0.3"
   }
 }

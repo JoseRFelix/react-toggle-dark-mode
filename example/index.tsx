@@ -1,7 +1,6 @@
-import 'react-app-polyfill/ie11';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { DarkModeSwitch } from '../.';
+import { createRoot } from 'react-dom/client';
+import { DarkModeSwitch } from '../src';
 
 function arrayN(size: number) {
   return new Array(size).fill(undefined);
@@ -16,7 +15,7 @@ const App = () => {
   };
 
   const addToggle = () => {
-    setToggleAmount(prevValue => prevValue + 1);
+    setToggleAmount((prevValue) => prevValue + 1);
   };
 
   return (
@@ -50,12 +49,13 @@ const App = () => {
         moonColor="red"
         size={30}
       />
-      {arrayN(toggleAmount).map(() => (
+      {arrayN(toggleAmount).map((_, index) => (
         <DarkModeSwitch
+          key={index}
           style={{ marginBottom: '2rem' }}
           checked={isDarkMode}
           onChange={toggleDarkMode}
-          size={Math.floor(Math.random() * 60) + 1}
+          size={Math.floor(Math.random() * 20) + 20}
         />
       ))}
       <button onClick={addToggle}>Add toggle</button>
@@ -63,4 +63,10 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('Unable to find root element');
+}
+
+createRoot(rootElement).render(<App />);
