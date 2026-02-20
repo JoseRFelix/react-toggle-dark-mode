@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 
 export const defaultProperties = {
   dark: {
@@ -36,115 +36,190 @@ export const defaultProperties = {
 };
 
 let REACT_TOGGLE_DARK_MODE_GLOBAL_ID = 0;
+type AnimationProperties = typeof defaultProperties;
+type ThemeProperties = AnimationProperties['dark'];
+type PartialThemeProperties = {
+  circle?: Partial<ThemeProperties['circle']>;
+  mask?: Partial<ThemeProperties['mask']>;
+  svg?: Partial<ThemeProperties['svg']>;
+  lines?: Partial<ThemeProperties['lines']>;
+};
+type DarkModeSwitchAnimationProperties = {
+  dark?: PartialThemeProperties;
+  light?: PartialThemeProperties;
+  springConfig?: Partial<AnimationProperties['springConfig']>;
+};
 
-type SVGProps = Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'onChange'>;
-export interface Props extends SVGProps {
+const mergeThemeProperties = (
+  theme: ThemeProperties,
+  customTheme?: PartialThemeProperties
+): ThemeProperties => ({
+  circle: { ...theme.circle, ...customTheme?.circle },
+  mask: { ...theme.mask, ...customTheme?.mask },
+  svg: { ...theme.svg, ...customTheme?.svg },
+  lines: { ...theme.lines, ...customTheme?.lines },
+});
+
+const resolveAnimationProperties = (
+  animationProperties?: DarkModeSwitchAnimationProperties
+): AnimationProperties => {
+  if (!animationProperties || animationProperties === defaultProperties) {
+    return defaultProperties;
+  }
+
+  return {
+    dark: mergeThemeProperties(
+      defaultProperties.dark,
+      animationProperties.dark
+    ),
+    light: mergeThemeProperties(
+      defaultProperties.light,
+      animationProperties.light
+    ),
+    springConfig: {
+      ...defaultProperties.springConfig,
+      ...animationProperties.springConfig,
+    },
+  };
+};
+
+type ButtonProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'onChange' | 'children'
+>;
+export interface Props extends ButtonProps {
   onChange: (checked: boolean) => void;
   checked: boolean;
   style?: React.CSSProperties;
   size?: number | string;
-  animationProperties?: typeof defaultProperties;
+  animationProperties?: DarkModeSwitchAnimationProperties;
   moonColor?: string;
   sunColor?: string;
 }
 
 export const DarkModeSwitch: React.FC<Props> = ({
   onChange,
-  children,
   checked = false,
   size = 24,
-  animationProperties = defaultProperties,
+  animationProperties,
   moonColor = 'white',
   sunColor = 'black',
   style,
+  onClick: onClickProp,
+  role,
+  tabIndex,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
   ...rest
 }) => {
-  const [id, setId] = React.useState(0);
-
-  React.useEffect(() => {
+  const [id] = React.useState(() => {
     REACT_TOGGLE_DARK_MODE_GLOBAL_ID += 1;
-    setId(REACT_TOGGLE_DARK_MODE_GLOBAL_ID);
-  }, [setId]);
+    return REACT_TOGGLE_DARK_MODE_GLOBAL_ID;
+  });
 
-  const properties = React.useMemo(() => {
-    if (animationProperties !== defaultProperties) {
-      return Object.assign(defaultProperties, animationProperties);
-    }
-
-    return animationProperties;
-  }, [animationProperties]);
+  const properties = React.useMemo(
+    () => resolveAnimationProperties(animationProperties),
+    [animationProperties]
+  );
 
   const { circle, svg, lines, mask } = properties[checked ? 'dark' : 'light'];
+  const { springConfig } = properties;
 
   const svgContainerProps = useSpring({
     ...svg,
-    config: animationProperties.springConfig,
+    config: springConfig,
   });
   const centerCircleProps = useSpring({
     ...circle,
-    config: animationProperties.springConfig,
+    config: springConfig,
   });
   const maskedCircleProps = useSpring({
     ...mask,
-    config: animationProperties.springConfig,
+    config: springConfig,
   });
   const linesProps = useSpring({
     ...lines,
-    config: animationProperties.springConfig,
+    config: springConfig,
   });
 
-  const toggle = () => onChange(!checked);
+  const toggle = React.useCallback(
+    () => onChange(!checked),
+    [checked, onChange]
+  );
+  const onClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      onClickProp?.(event);
+
+      if (!event.defaultPrevented) {
+        toggle();
+      }
+    },
+    [onClickProp, toggle]
+  );
 
   const uniqueMaskId = `circle-mask-${id}`;
 
   return (
-    <animated.svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      color={checked ? moonColor : sunColor}
-      fill="none"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      stroke="currentColor"
-      onClick={toggle}
+    <button
+      type="button"
+      role={role ?? 'switch'}
+      aria-checked={checked}
+      aria-label={ariaLabelledBy ? undefined : ariaLabel ?? 'Toggle dark mode'}
+      aria-labelledby={ariaLabelledBy}
+      tabIndex={tabIndex ?? 0}
+      onClick={onClick}
       style={{
         cursor: 'pointer',
-        ...svgContainerProps,
+        padding: 0,
+        border: 0,
+        background: 'transparent',
+        lineHeight: 0,
         ...style,
       }}
       {...rest}
     >
-      <mask id={uniqueMaskId}>
-        <rect x="0" y="0" width="100%" height="100%" fill="white" />
-        <animated.circle
-          // @ts-ignore
-          style={maskedCircleProps}
-          r="9"
-          fill="black"
-        />
-      </mask>
+      <animated.svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        color={checked ? moonColor : sunColor}
+        fill="none"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        stroke="currentColor"
+        style={svgContainerProps}
+      >
+        <mask id={uniqueMaskId}>
+          <rect x="0" y="0" width="100%" height="100%" fill="white" />
+          <animated.circle
+            // @ts-ignore
+            style={maskedCircleProps}
+            r="9"
+            fill="black"
+          />
+        </mask>
 
-      <animated.circle
-        cx="12"
-        cy="12"
-        fill={checked ? moonColor : sunColor}
-        // @ts-ignore
-        style={centerCircleProps}
-        mask={`url(#${uniqueMaskId})`}
-      />
-      <animated.g stroke="currentColor" style={linesProps}>
-        <line x1="12" y1="1" x2="12" y2="3" />
-        <line x1="12" y1="21" x2="12" y2="23" />
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-        <line x1="1" y1="12" x2="3" y2="12" />
-        <line x1="21" y1="12" x2="23" y2="12" />
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-      </animated.g>
-    </animated.svg>
+        <animated.circle
+          cx="12"
+          cy="12"
+          fill={checked ? moonColor : sunColor}
+          style={centerCircleProps}
+          mask={`url(#${uniqueMaskId})`}
+        />
+        <animated.g stroke="currentColor" style={linesProps}>
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </animated.g>
+      </animated.svg>
+    </button>
   );
 };

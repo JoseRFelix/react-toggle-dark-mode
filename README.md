@@ -5,7 +5,7 @@
   <a href="https://www.npmjs.com/package/react-toggle-dark-mode" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/react-toggle-dark-mode.svg">
   </a>
-  <img src="https://img.shields.io/badge/node-%3E%3D10-blue.svg" />
+  <img src="https://img.shields.io/badge/node-%3E%3D20-blue.svg" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a> 
@@ -17,11 +17,13 @@
 
 > 🌃 Animated dark mode toggle as seen in blogs!
 
+Supports React 16.14+ through 19.
+
 ![Interactive sun and moon transition](./docs/demo.gif)
 
 ## Prerequisites
 
-- node >=10
+- node >=20
 
 ## Installation
 
@@ -29,17 +31,17 @@
 npm i react-toggle-dark-mode
 ```
 
-or with Yarn:
+or with pnpm:
 
 ```shell
-yarn add react-toggle-dark-mode
+pnpm add react-toggle-dark-mode
 ```
 
 ## Usage
 
 ```jsx
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const App = () => {
@@ -58,6 +60,14 @@ const App = () => {
     />
   );
 };
+
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('Unable to find root element');
+}
+
+createRoot(rootElement).render(<App />);
 ```
 
 ## API
@@ -66,15 +76,20 @@ const App = () => {
 
 #### Props
 
-| Name                | Type                         | Default Value                   | Description                               |
-| ------------------- | ---------------------------- | ------------------------------- | ----------------------------------------- |
-| onChange            | \(checked: boolean\) => void |                                 | Event that triggers when icon is clicked. |
-| checked             | boolean                      | false                           | Current icon state.                       |
-| style               | Object                       |                                 | CSS properties object.                    |
-| size                | number                       | 24                              | SVG size.                                 |
-| animationProperties | Object                       | defaultProperties \(see below\) | Override default animation properties.    |
-| moonColor           | string                       | white                           | Color of the moon.                        |
-| sunColor            | string                       | black                           | Color of the sun.                         |
+| Name                | Type                                               | Default Value                   | Description                                                                                  |
+| ------------------- | -------------------------------------------------- | ------------------------------- | -------------------------------------------------------------------------------------------- |
+| onChange            | \(checked: boolean\) => void                       |                                 | Event that triggers when icon is clicked.                                                    |
+| checked             | boolean                                            | false                           | Current icon state.                                                                          |
+| style               | React.CSSProperties                                |                                 | CSS properties object applied to the button wrapper.                                         |
+| size                | number \| string                                   | 24                              | SVG size.                                                                                    |
+| animationProperties | Partial animation properties object                | defaultProperties \(see below\) | Override only the fields you want; missing fields are merged with defaults.                 |
+| moonColor           | string                                             | white                           | Color of the moon.                                                                           |
+| sunColor            | string                                             | black                           | Color of the sun.                                                                            |
+| aria-label          | string                                             | Toggle dark mode                | Accessible label for the control. Ignored when `aria-labelledby` is provided.               |
+| aria-labelledby     | string                                             |                                 | Links the control to an external label element.                                              |
+| onClick             | \(event: React.MouseEvent<HTMLButtonElement>\)=>void |                                 | Optional button click handler. Call `event.preventDefault()` to prevent toggling on click. |
+
+All valid button attributes (except `children`) are forwarded to the underlying button element.
 
 ### Default Animation Properties
 
